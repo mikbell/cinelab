@@ -1,5 +1,5 @@
 <template>
-    <AppLayout>
+    <AppLayout title="Posts">
         <template #header>
             <h2 class="py-4 text-2xl font-bold text-center text-gray-800">
                 Posts

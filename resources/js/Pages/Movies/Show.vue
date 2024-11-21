@@ -1,8 +1,8 @@
 <template>
     <AppLayout>
         <template #header>
-            <h2 class="py-4 text-2xl font-bold text-center text-gray-800">
-                OMDB API - Movie Details
+            <h2 class="py-4 text-3xl font-bold text-center text-gray-800">
+                Movie Details
             </h2>
         </template>
 
@@ -10,87 +10,65 @@
             <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white rounded-lg shadow-xl">
                     <!-- Movie Poster -->
-                    <div class="flex bg-gray-800">
+                    <div class="flex justify-center p-4 bg-gray-900">
                         <img
-                            :src="data.Poster"
+                            :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
                             alt="Movie Poster"
-                            class="mx-auto"
+                            class="w-auto rounded-lg shadow-lg h-96"
                         />
                     </div>
 
                     <!-- Movie Details -->
-                    <div class="p-6">
+                    <div class="p-8">
                         <!-- Title and Year -->
                         <div class="text-center">
-                            <h1 class="text-3xl font-bold text-gray-900">
-                                {{ data.Title }}
+                            <h1 class="text-4xl font-extrabold text-gray-800">
+                                {{ movie.title }}
                             </h1>
-                            <p class="text-lg text-gray-500">
-                                ({{ data.Year }})
-                            </p>
                         </div>
 
                         <!-- Plot -->
-                        <div class="mt-6">
-                            <h2 class="text-lg font-semibold text-gray-700">
+                        <div class="pt-6 mt-8 border-t">
+                            <h2 class="text-2xl font-semibold text-gray-700">
                                 Plot
                             </h2>
-                            <p class="mt-2 text-gray-600">{{ data.Plot }}</p>
+                            <p class="mt-4 leading-relaxed text-gray-600">
+                                {{ movie.overview }}
+                            </p>
                         </div>
 
                         <!-- Movie Information Grid -->
-                        <div class="grid grid-cols-2 gap-4 mt-8 text-gray-700">
+                        <div
+                            class="grid grid-cols-1 gap-6 mt-8 text-gray-700 md:grid-cols-2"
+                        >
                             <div>
-                                <p><strong>Type:</strong> {{ data.Type }}</p>
-                                <p><strong>Genre:</strong> {{ data.Genre }}</p>
                                 <p>
                                     <strong>Released:</strong>
-                                    {{ data.Released }}
+                                    {{ movie.release_date }}
                                 </p>
-                                <p>
-                                    <strong>Director:</strong>
-                                    {{ data.Director }}
-                                </p>
-                                <p>
-                                    <strong>Runtime:</strong> {{ data.Runtime }}
-                                </p>
+
                                 <p>
                                     <strong>Language:</strong>
-                                    {{ data.Language }}
+                                    {{ movie.original_language }}
+                                </p>
+
+                                <p>
+                                    <strong>Rated:</strong>
+                                    {{ movie.vote_average }}
                                 </p>
                                 <p>
-                                    <strong>Country:</strong> {{ data.Country }}
+                                    <strong>Vote Count:</strong>
+                                    {{ movie.vote_count }}
                                 </p>
                             </div>
-                            
-                            <div>
-                                <p>
-                                    <strong>Box Office:</strong>
-                                    {{ data.BoxOffice }}
-                                </p>
-                                <p>
-                                    <strong>Awards:</strong> {{ data.Awards }}
-                                </p>
-                                <p><strong>Rated:</strong> {{ data.Rated }}</p>
-                                <p>
-                                    <strong>Writer:</strong> {{ data.Writer }}
-                                </p>
-                                <p>
-                                    <strong>Actors:</strong> {{ data.Actors }}
-                                </p>
-                                <p>
-                                    <strong>Metascore:</strong>
-                                    {{ data.Metascore }}
-                                </p>
-                                <p>
-                                    <strong>IMDB Rating:</strong>
-                                    {{ data.ImdbRating }}
-                                </p>
-                                <p>
-                                    <strong>IMDB Votes:</strong>
-                                    {{ data.ImdbVotes }}
-                                </p>
-                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mt-10 space-x-4 text-center">
+                            <PrimaryButton as="link" :href="route('movies.index')"> Back to List </PrimaryButton>
+                            <SecondaryButton>
+                                Add to Favorites
+                            </SecondaryButton>
                         </div>
                     </div>
                 </div>
@@ -101,8 +79,10 @@
 
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
-    data: Object,
+    movie: Object,
 });
 </script>
