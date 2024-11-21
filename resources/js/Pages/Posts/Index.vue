@@ -1,7 +1,7 @@
 <template>
     <AppLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            <h2 class="py-4 text-2xl font-bold text-center text-gray-800">
                 Posts
             </h2>
         </template>
