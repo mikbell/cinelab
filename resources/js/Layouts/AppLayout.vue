@@ -36,7 +36,7 @@ const navLinks = [
         active: route().current("posts.index"),
     },
     {
-        name: "OMDB API",
+        name: "TMDb API",
         href: route("movies.index"),
         active: route().current("movies.index"),
     },

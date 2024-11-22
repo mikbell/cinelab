@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Jobs\FetchPopularMoviesJob;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class TmdbService
 {
@@ -16,28 +18,20 @@ class TmdbService
     }
 
     // Funzione per ottenere tutti i film
-    public function getAllMovies($maxPages = 5)
-    {
-        $allMovies = [];
-        $page = 1;
 
-        do {
+    public function getPopularMovies($page = 1)
+    {
+        $cacheKey = "popular_movies_page_{$page}";
+    
+        return Cache::remember($cacheKey, 3600, function () use ($page) {
             $response = Http::get("{$this->baseUrl}/discover/movie", [
                 'api_key' => $this->apiKey,
                 'language' => 'it-IT',
                 'page' => $page,
             ]);
-
-            $data = $response->json();
-
-            if (isset($data['results'])) {
-                $allMovies = array_merge($allMovies, $data['results']);
-            }
-
-            $page++;
-        } while ($page <= ($data['total_pages'] ?? 0) && $page <= $maxPages);
-
-        return $allMovies;
+    
+            return $response->json();
+        });
     }
 
     // Funzione per cercare film
@@ -59,9 +53,9 @@ class TmdbService
             'api_key' => $this->apiKey,
             'language' => 'it-IT',
         ]);
-    
+
         return $response->json();
     }
-    
+
 }
 

@@ -7,8 +7,8 @@
         </template>
 
         <div class="mx-auto space-y-2 max-w-7xl sm:px-6 lg:px-8">
-            <Link :href="route('posts.show', post)" v-for="post in posts" class="block px-4 py-2 text-lg">
-                {{ post.title }}
+            <Link :href="route('posts.show', post)" v-for="post in posts" class="block px-4 text-lg group">
+                <h2 class="text-xl font-semibold text-gray-800 transition duration-150 eas-in-out group-hover:text-blue-600">{{ post.title }}</h2>
             </Link>
         </div>
     </AppLayout>

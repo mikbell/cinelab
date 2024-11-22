@@ -39,14 +39,18 @@ class MovieController extends Controller
         ]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $movies = $this->tmdbService->getAllMovies();
-
+        $page = (int) $request->query('page', 1); // Converte il valore in intero
+        $movies = $this->tmdbService->getPopularMovies($page);
+    
         return inertia('Movies/Index', [
-            'movies' => $movies,
+            'movies' => $movies['results'] ?? [],
+            'totalResults' => $movies['total_results'] ?? 0,
+            'page' => $page, // Passa la pagina come numero
         ]);
     }
+    
 
     public function show($id)
     {
