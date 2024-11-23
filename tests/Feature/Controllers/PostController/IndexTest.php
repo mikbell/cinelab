@@ -1,22 +1,26 @@
 <?php
 
+use App\Http\Resources\PostResource;
+use App\Models\Post;
 use Inertia\Testing\AssertableInertia;
 
-it('returns the correct component', function () {
-    $response = $this->get(route('posts.index'));
+use function Pest\Laravel\get;
 
-    $response->assertInertia(
-        fn(AssertableInertia $inertia) => $inertia
+it('should return the correct component', function () {
+    get(route('posts.index'))
+        ->assertInertia(fn (AssertableInertia $inertia) => $inertia
             ->component('Posts/Index', true)
-    );
+        );
 });
 
+it('passes posts to the view', function () {
+    $posts = Post::factory(3)->create();
 
-it('returns the correct component', function () {
-    $response = $this->get(route('posts.index'));
-
-    $response->assertInertia(
-        fn(AssertableInertia $inertia) => $inertia
-            ->has('posts')
-    );
+    get(route('posts.index'))
+        ->assertInertia(fn (AssertableInertia $page) => $page
+            ->has('posts.data', 3) // Verifica che ci siano 3 post
+            ->where('posts.data.0.id', $posts->last()->id) // L'ultimo creato diventa il primo
+            ->where('posts.data.1.id', $posts[1]->id)
+            ->where('posts.data.2.id', $posts->first()->id)
+        );
 });

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use App\Providers\TestingServiceProvider;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +23,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         JsonResource::withoutWrapping();
+
+        Model::preventLazyLoading();
+
+        if ($this->app->environment('testing')) {
+            $this->app->register(TestingServiceProvider::class);
+        }
+
     }
 }

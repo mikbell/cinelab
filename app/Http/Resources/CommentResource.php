@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CommentResource extends JsonResource
@@ -16,8 +18,8 @@ class CommentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'post' => PostResource::make($this->post),
-            'user' => UserResource::make($this->user),
+            'user' => $this->whenLoaded('user', fn() => UserResource::make($this->user)),
+            'post' => $this->whenLoaded('post', fn() => PostResource::make($this->post)),
             'content' => $this->content,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

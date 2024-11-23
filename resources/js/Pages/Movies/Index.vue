@@ -6,13 +6,9 @@
             </h2>
         </template>
 
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <Container>
             <!-- Bottone di ricerca -->
-            <div class="flex justify-end mb-6">
-                <PrimaryButton as="link" :href="route('movies.search')">
-                    Cerca Film
-                </PrimaryButton>
-            </div>
+            <MovieSearchForm />
 
             <!-- Griglia dei film -->
             <div
@@ -38,15 +34,16 @@
                 :totalPages="totalPages"
                 @page-change="onPageChange"
             />
-        </div>
+        </Container>
     </AppLayout>
 </template>
 
 <script setup>
 import MovieCard from "@/Components/MovieCard.vue";
 import MoviePagination from "@/Components/MoviePagination.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import MovieSearchForm from "@/Components/MovieSearchForm.vue";
+import Container from "@/Components/Container.vue";
 
 const props = defineProps({
     movies: Array,

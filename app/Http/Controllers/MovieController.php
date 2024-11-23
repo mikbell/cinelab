@@ -16,41 +16,32 @@ class MovieController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->query('query', ''); // Recupera la query dalla richiesta
-        $page = $request->query('page', 1);
-
-        // Se la query è vuota, restituisci un errore o risultati vuoti
-        if (empty($query)) {
-            return inertia('Movies/Search', [
-                'movies' => [],
-                'query' => '',
-                'totalResults' => 0,
-                'page' => 1,
-            ]);
-        }
+        $query = $request->query('query', ''); // Query di ricerca
+        $page = $request->query('page', 1); // Pagina corrente
 
         $movies = $this->tmdbService->searchMovies($query, $page);
 
         return inertia('Movies/Search', [
             'movies' => $movies['results'] ?? [],
+            'totalResults' => $movies['total_results'] ?? 0,
             'query' => $query,
+            'page' => $page,
+        ]);
+    }
+
+
+    public function index(Request $request)
+    {
+        $page = (int) $request->query('page', 1);
+        $movies = $this->tmdbService->getPopularMovies($page);
+
+        return inertia('Movies/Index', [
+            'movies' => $movies['results'] ?? [],
             'totalResults' => $movies['total_results'] ?? 0,
             'page' => $page,
         ]);
     }
 
-    public function index(Request $request)
-    {
-        $page = (int) $request->query('page', 1); // Converte il valore in intero
-        $movies = $this->tmdbService->getPopularMovies($page);
-    
-        return inertia('Movies/Index', [
-            'movies' => $movies['results'] ?? [],
-            'totalResults' => $movies['total_results'] ?? 0,
-            'page' => $page, // Passa la pagina come numero
-        ]);
-    }
-    
 
     public function show($id)
     {

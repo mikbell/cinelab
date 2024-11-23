@@ -28,5 +28,7 @@
         <env name="QUEUE_CONNECTION" value="sync" />
         <env name="SESSION_DRIVER" value="array" />
         <env name="TELESCOPE_ENABLED" value="false" />
+        <env name="APP_ENV" value="testing" />
+        <env name="TESTING_SERVICE_PROVIDER" value="App\Providers\TestingServiceProvider" />
     </php>
 </phpunit>

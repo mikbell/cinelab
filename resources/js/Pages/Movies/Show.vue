@@ -7,7 +7,7 @@
         </template>
 
         <div class="py-12">
-            <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
+            <Container>
                 <div class="overflow-hidden bg-white rounded-lg shadow-xl">
                     <!-- Movie Poster -->
                     <div class="flex justify-center p-6 bg-gray-900">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </Container>
         </div>
     </AppLayout>
 </template>
@@ -115,6 +115,7 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import Container from "@/Components/Container.vue";
 
 const props = defineProps({
     movie: Object,

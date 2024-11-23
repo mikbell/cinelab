@@ -2,25 +2,13 @@
     <AppLayout title="Search">
         <template #header>
             <h2 class="py-4 text-3xl font-bold text-center text-gray-900">
-                Cerca Film
+                Cerca Film "{{ query }}"
             </h2>
         </template>
 
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <Container>
             <!-- Campo di ricerca -->
-            <div class="flex gap-2 p-6 mb-6 bg-white rounded-lg shadow-lg">
-                <input
-                    v-model="query"
-                    @keyup.enter="searchMovies"
-                    type="text"
-                    placeholder="Inserisci il nome del film..."
-                    class="flex-1 p-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-                <PrimaryButton @click="searchMovies" :disabled="loading">
-                    <span v-if="!loading">Cerca</span>
-                    <span v-else>Caricamento...</span>
-                </PrimaryButton>
-            </div>
+            <MovieSearchForm />
 
             <!-- Risultati della ricerca -->
             <div
@@ -32,7 +20,6 @@
                     :key="movie.id"
                     :movie="movie"
                     :href="route('movies.show', movie.id)"
-
                 />
             </div>
             <div v-else-if="!loading" class="mt-8 text-center">
@@ -40,15 +27,24 @@
                     Nessun film trovato. Prova con un'altra parola chiave.
                 </p>
             </div>
-        </div>
+
+            <!-- Paginazione -->
+            <MoviePagination
+                :page="page"
+                :totalPages="totalPages"
+                @page-change="onPageChange"
+            />
+        </Container>
     </AppLayout>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import MovieCard from "@/Components/MovieCard.vue";
+import MovieSearchForm from "@/Components/MovieSearchForm.vue";
+import MoviePagination from "@/Components/MoviePagination.vue";
+import Container from "@/Components/Container.vue";
 
 const props = defineProps({
     movies: Array,
@@ -56,14 +52,18 @@ const props = defineProps({
     totalResults: Number,
     page: Number,
 });
-
-const query = ref(props.query);
 const movies = ref([...props.movies]);
 
-const searchMovies = () => {
-    if (!query.value.trim()) return;
+const totalPages = Math.ceil(props.totalResults / 32);
 
-    const url = route("movies.search", { query: query.value });
-    window.location.href = url; // Cambia pagina per ricaricare i dati
+const onPageChange = (newPage) => {
+    const targetPage = parseInt(newPage, 10); // Assicura che sia un numero
+
+    console.log("Navigazione alla pagina:", targetPage); // Debug
+    const url = route("movies.search", {
+        page: targetPage,
+        query: props.query,
+    });
+    window.location.href = url; // Naviga alla nuova pagina
 };
 </script>
