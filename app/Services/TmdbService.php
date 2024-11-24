@@ -17,38 +17,83 @@ class TmdbService
         if (!$this->apiKey) {
             throw new \Exception('La chiave API di TMDb non è configurata.');
         }
-    
+
         $this->baseUrl = 'https://api.themoviedb.org/3';
     }
-    
+
 
     // Funzione per ottenere tutti i film
 
     public function getPopularMovies($page = 1)
     {
         $cacheKey = "popular_movies_page_{$page}";
-        
+
         return Cache::remember($cacheKey, 3600, function () use ($page) {
             $response = Http::get("{$this->baseUrl}/discover/movie", [
                 'api_key' => $this->apiKey,
                 'language' => 'it-IT',
                 'page' => $page,
             ]);
-    
+
             if ($response->failed()) {
                 \Log::error("Errore nella richiesta TMDb per i film popolari.", [
                     'status' => $response->status(),
                     'body' => $response->body(),
                 ]);
-    
+
                 return ['results' => [], 'total_results' => 0];
             }
-        
+
             return $response->json();
         });
     }
-    
-    
+
+    public function getTopRatedMovies($page = 1)
+    {
+        $cacheKey = "top_rated_movies_page_{$page}";
+
+        return Cache::remember($cacheKey, 3600, function () use ($page) {
+            $response = Http::get("{$this->baseUrl}/movie/top_rated", [
+                'api_key' => $this->apiKey,
+                'language' => 'it-IT',
+                'page' => $page,
+            ]);
+
+            return $response->json();
+        });
+    }
+
+    public function getNowPlayingMovies($page = 1)
+    {
+        $cacheKey = "now_playing_movies_page_{$page}";
+
+        return Cache::remember($cacheKey, 3600, function () use ($page) {
+            $response = Http::get("{$this->baseUrl}/movie/now_playing", [
+                'api_key' => $this->apiKey,
+                'language' => 'it-IT',
+                'page' => $page,
+            ]);
+
+            return $response->json();
+        });
+    }
+
+    public function getMoviesByGenre($genreId, $page = 1)
+    {
+        $cacheKey = "genre_{$genreId}_movies_page_{$page}";
+
+        return Cache::remember($cacheKey, 3600, function () use ($genreId, $page) {
+            $response = Http::get("{$this->baseUrl}/discover/movie", [
+                'api_key' => $this->apiKey,
+                'language' => 'it-IT',
+                'with_genres' => $genreId,
+                'page' => $page,
+            ]);
+
+            return $response->json();
+        });
+    }
+
 
     // Funzione per cercare film
     public function searchMovies(string $query, int $page = 1)

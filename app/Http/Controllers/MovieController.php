@@ -29,6 +29,33 @@ class MovieController extends Controller
         ]);
     }
 
+    public function dashboard(Request $request)
+    {
+        $page = (int) $request->query('page', 1);
+    
+        // Film popolari
+        $popularMovies = $this->tmdbService->getPopularMovies($page);
+    
+        // Film più votati
+        $topRatedMovies = $this->tmdbService->getTopRatedMovies($page);
+    
+        // Film recenti
+        $recentMovies = $this->tmdbService->getNowPlayingMovies($page);
+    
+        // Film per genere (esempio: Azione)
+        $genreId = 28; // ID del genere Azione
+        $actionMovies = $this->tmdbService->getMoviesByGenre($genreId, $page);
+    
+        return inertia('Dashboard', [
+            'popularMovies' => $popularMovies['results'] ?? [],
+            'topRatedMovies' => $topRatedMovies['results'] ?? [],
+            'recentMovies' => $recentMovies['results'] ?? [],
+            'actionMovies' => $actionMovies['results'] ?? [],
+            'page' => $page,
+        ]);
+    }
+    
+
 
     public function index(Request $request)
     {

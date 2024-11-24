@@ -31,15 +31,16 @@ const navLinks = [
         active: route().current("dashboard"),
     },
     {
-        name: "Posts",
-        href: route("posts.index"),
-        active: route().current("posts.index"),
-    },
-    {
-        name: "TMDb API",
+        name: "Film",
         href: route("movies.index"),
         active: route().current("movies.index"),
     },
+    {
+        name: "Forum",
+        href: route("posts.index"),
+        active: route().current("posts.index"),
+    },
+
 ];
 </script>
 
@@ -52,7 +53,7 @@ const navLinks = [
         <Banner />
 
         <div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
-            <nav class="bg-white shadow-md">
+            <nav class="shadow-md bg-gradient-to-b from-red-500 to-red-800">
                 <!-- Menu di navigazione principale -->
                 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -91,19 +92,19 @@ const navLinks = [
                                                     page.props.jetstream
                                                         .managesProfilePhotos
                                                 "
-                                                class="w-8 h-8 border rounded-full"
+                                                class="w-8 h-8 border rounded-full shadow-lg"
                                                 :src="user.profile_photo_url"
-                                                :alt="user.name"
+                                                :alt="username"
                                             />
                                             <span v-else class="font-medium">
-                                                {{ user.name }}
+                                                {{ username }}
                                             </span>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 fill="none"
                                                 viewBox="0 0 24 24"
                                                 stroke="currentColor"
-                                                class="w-5 h-5"
+                                                class="w-5 h-5 text-white"
                                             >
                                                 <path
                                                     stroke-linecap="round"
@@ -116,6 +117,7 @@ const navLinks = [
                                     </template>
 
                                     <template #content>
+                                        <span class="px-2 text-sm text-gray-500">{{ username }}</span>
                                         <DropdownLink
                                             :href="route('profile.show')"
                                         >
@@ -217,6 +219,14 @@ const navLinks = [
             <main class="py-6">
                 <slot />
             </main>
+
+            <!-- Footer -->
+            <footer class="bg-white shadow">
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <p>Powered by the <Link href="https://www.themoviedb.org/" class="underline">TMDB</Link> API</p>
+                    <p>&copy; {{ new Date().getFullYear() }}</p>
+                </div>
+            </footer>
         </div>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <AppLayout title="Search">
         <template #header>
-            <h2 class="py-4 text-3xl font-bold text-center text-gray-900">
+            <h2 class="text-3xl font-bold text-center text-gray-900">
                 Cerca Film "{{ query }}"
             </h2>
         </template>

@@ -22,7 +22,10 @@ class CommentResource extends JsonResource
             'post' => $this->whenLoaded('post', fn() => PostResource::make($this->post)),
             'content' => $this->content,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'updated_at' => $this->updated_at,
+            'can' => [
+                'delete' => $request->user()?->can('delete', $this->resource),
+            ]
         ];
     }
 }

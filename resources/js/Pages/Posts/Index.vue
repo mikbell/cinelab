@@ -2,7 +2,7 @@
     <AppLayout title="Posts">
         <!-- Header -->
         <template #header>
-            <h2 class="py-6 text-3xl font-bold text-center text-gray-900">
+            <h2 class="text-3xl font-bold text-center text-gray-900">
                 Posts
             </h2>
         </template>

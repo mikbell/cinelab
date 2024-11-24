@@ -8,6 +8,7 @@
                 :class="{
                     'opacity-50 pointer-events-none': !meta.prev_page_url,
                 }"
+                :only="only"
             >
                 <ChevronLeftIcon class="w-5 h-5 mr-2" />
                 Previous
@@ -18,6 +19,7 @@
                 :class="{
                     'opacity-50 pointer-events-none': !meta.next_page_url,
                 }"
+                :only="only"
             >
                 Next
                 <ChevronRightIcon class="w-5 h-5 ml-2" />
@@ -62,6 +64,7 @@
                         preserve-scroll="true"
                         aria-current="page"
                         :aria-disabled="!link.url"
+                        :only="only"
                     ></Link>
                 </nav>
             </div>
@@ -74,6 +77,13 @@ import { Link } from "@inertiajs/vue3";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/20/solid";
 
 defineProps({
-    meta: Object,
+    meta: {
+        type: Object,
+        required: true,
+    },
+    only: {
+        type: Array,
+        default: () => [],
+    },
 });
 </script>

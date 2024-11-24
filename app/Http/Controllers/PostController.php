@@ -16,10 +16,10 @@ class PostController extends Controller
     {
         return inertia('Posts/Index', [
             'posts' => PostResource::collection(Post::query()
-            ->with('user')
-            ->latest()
-            ->latest('id')
-            ->paginate())
+                ->with('user')
+                ->latest()
+                ->latest('id')
+                ->paginate())
         ]);
     }
 
@@ -45,10 +45,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post->load('user');
-        
+
         return inertia('Posts/Show', [
-            'post' => PostResource::make($post),
-            'comments' => CommentResource::collection($post->comments()->with('user')->paginate(10))
+            'post' => fn() => PostResource::make($post),
+            'comments' => fn() => CommentResource::collection($post->comments()->with('user')->latest()->paginate(10))
         ]);
     }
 

@@ -12,16 +12,21 @@
         <!-- Comment Content -->
         <div class="flex-1">
             <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                <p class="text-sm text-gray-800">{{ comment.content }}</p>
+                <p class="text-sm text-gray-800 break-all">
+                    {{ comment.content }}
+                </p>
             </div>
             <div class="mt-2 text-xs text-gray-500">
-                <span
-                    >By
-                    <span class="font-medium text-gray-700">{{
-                        comment.user.name
-                    }}</span></span
-                >
+                By
+                <span class="font-medium text-gray-700">
+                    {{ comment.user.name }}
+                </span>
                 <span class="ml-2">{{ relativeDate(comment.created_at) }}</span>
+            </div>
+            <div>
+                <form v-if="canDelete" @submit.prevent="$emit('delete', comment.id)">
+                    <button type="submit" class="text-red-500">Delete</button>
+                </form>
             </div>
         </div>
     </div>
@@ -29,6 +34,14 @@
 
 <script setup>
 import { relativeDate } from "@/Utilities/date.js";
+import { router, usePage} from "@inertiajs/vue3";
+import { computed } from "vue";
 
-defineProps(["comment"]);
+const props = defineProps(["comment"]);
+
+const emit = defineEmits(["delete"]);
+
+const canDelete = computed(
+    () => props.comment.user.id === usePage().props.auth.user.id
+);
 </script>
