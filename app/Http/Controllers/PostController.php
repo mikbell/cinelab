@@ -9,6 +9,7 @@ use App\Http\Resources\CommentResource;
 
 class PostController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Posts/Create');
     }
 
     /**
@@ -36,7 +37,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'min:' . Post::TITLE_MIN_LENGTH,
+                'max:' . Post::TITLE_MAX_LENGTH,
+            ],
+            'content' => [
+                'required',
+                'string',
+                'min:' . Post::CONTENT_MIN_LENGTH,
+                'max:' . Post::CONTENT_MAX_LENGTH,
+            ],
+        ]);
+
+        $post = Post::create([
+            ...$data,
+            'user_id' => $request->user()->id,
+        ]);
+
+        return redirect()->route('posts.show', $post);
     }
 
     /**

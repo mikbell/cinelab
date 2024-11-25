@@ -19,4 +19,9 @@ class CommentPolicy
     {
         return $user->id === $comment->user_id && $comment->created_at->isAfter(now()->subHour());
     }
+    
+    public function update(User $user, Comment $comment)
+    {
+        return $user->id === $comment->user_id;
+    }
 }

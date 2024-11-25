@@ -12,22 +12,6 @@ class CommentController extends Controller
     use AuthorizesRequests;
 
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, Post $post)
@@ -40,23 +24,7 @@ class CommentController extends Controller
             ->associate($post)
             ->save();
 
-        return to_route('posts.show', $post);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-        //
+        return to_route('posts.show', $post)->banner('Comment added');
     }
 
     /**
@@ -64,7 +32,15 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+        
+        $data = $request->validate([
+            'content' => 'required|max:1000|min:3|string',
+        ]);
+
+        $comment->update($data);
+
+        return to_route('posts.show', ['post' => $comment->post_id, 'page' => $request->query('page')])->banner('Comment updated');
     }
 
     /**
@@ -77,6 +53,6 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return to_route('posts.show', [$comment->post_id, 'page' => $request->query('page')]);
+        return to_route('posts.show', [$comment->post_id, 'page' => $request->query('page')])->banner('Comment deleted');
     }
 }

@@ -16,19 +16,21 @@ it('can show a post', function () {
 
 it('passes a post to the view', function () {
     $post = Post::factory()->create();
-
-    $post->load('user');
+    $post->load('user'); // Carica la relazione con l'utente
 
     get(route('posts.show', $post))
-        ->assertHasResource('post', PostResource::make($post));
+        ->assertHasResource('post', new PostResource($post));
 });
+
 
 it('passes comments to the view', function () {
     $post = Post::factory()->create();
 
-    $comments = Comment::factory(5)->for($post)->create();
-
+    $comments = Comment::factory(5)->for($post)->create()->sortBy('created_at');
 
     get(route('posts.show', $post))
-        ->assertHasPaginatedResource('comments', CommentResource::collection($comments));
+        ->assertHasPaginatedResource(
+            'comments',
+            CommentResource::collection($comments->values()) // Converte in una Collection ordinata
+        );
 });

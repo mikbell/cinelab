@@ -7,6 +7,7 @@ import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+import ConfirmationModalWrapper from "@/Components/ConfirmationModalWrapper.vue";
 
 defineProps({
     title: String,
@@ -40,7 +41,6 @@ const navLinks = [
         href: route("posts.index"),
         active: route().current("posts.index"),
     },
-
 ];
 </script>
 
@@ -117,7 +117,10 @@ const navLinks = [
                                     </template>
 
                                     <template #content>
-                                        <span class="px-2 text-sm text-gray-500">{{ username }}</span>
+                                        <span
+                                            class="px-2 text-sm text-gray-500"
+                                            >{{ username }}</span
+                                        >
                                         <DropdownLink
                                             :href="route('profile.show')"
                                         >
@@ -142,10 +145,16 @@ const navLinks = [
 
                                 <!-- Se l'utente è ospite -->
                                 <div v-else class="flex space-x-4">
-                                    <NavLink :href="route('login')">
+                                    <NavLink
+                                        :href="route('login')"
+                                        :active="route().current('login')"
+                                    >
                                         Log in
                                     </NavLink>
-                                    <NavLink :href="route('register')">
+                                    <NavLink
+                                        :href="route('register')"
+                                        :active="route().current('register')"
+                                    >
                                         Register
                                     </NavLink>
                                 </div>
@@ -216,17 +225,27 @@ const navLinks = [
             </header>
 
             <!-- Contenuto principale -->
-            <main class="py-6">
+            <main class="min-h-screen py-6">
                 <slot />
             </main>
 
             <!-- Footer -->
             <footer class="bg-white shadow">
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <p>Powered by the <Link href="https://www.themoviedb.org/" class="underline">TMDB</Link> API</p>
+                    <p>
+                        Powered by the
+                        <Link
+                            href="https://www.themoviedb.org/"
+                            class="underline"
+                            >TMDB</Link
+                        >
+                        API
+                    </p>
                     <p>&copy; {{ new Date().getFullYear() }}</p>
                 </div>
             </footer>
         </div>
+        
+        <ConfirmationModalWrapper />
     </div>
 </template>

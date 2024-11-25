@@ -17,15 +17,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('posts.comments.store');
-    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-
+    Route::resource('posts', PostController::class)->only('store', 'create', 'update', 'destroy')->middleware('can:create,App\Models\Post');;
+    Route::resource('posts.comments', CommentController::class)->shallow()->only('store', 'destroy', 'update');
 });
 
 Route::get('/', [MovieController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::resource('posts', PostController::class)->only('index', 'show');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');

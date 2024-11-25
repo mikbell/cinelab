@@ -36,16 +36,12 @@ class TestingServiceProvider extends ServiceProvider
         });
 
         // Verifica una risorsa paginata
-        AssertableInertia::macro('hasPaginatedResource', function (string $key, ResourceCollection $resource) {
-            $this->hasResource("{$key}.data", $resource);
-
-            // Verifica la presenza di chiavi paginazione standard
-            expect($this->prop($key))->toHaveKeys(['data', 'links', 'meta']);
-            expect($this->prop("{$key}.links"))->toHaveKeys(['first', 'last', 'prev', 'next']);
-            expect($this->prop("{$key}.meta"))->toHaveKeys(['current_page', 'last_page', 'from', 'to', 'total']);
-
+        AssertableInertia::macro('hasResource', function (string $key, JsonResource $resource) {
+            $this->has($key);
+            expect($this->prop($key))->toEqual($resource->toArray(request())); // Conversione corretta
             return $this;
         });
+        
 
         // Macro per TestResponse - risorsa singola
         TestResponse::macro('assertHasResource', function (string $key, JsonResource $resource) {

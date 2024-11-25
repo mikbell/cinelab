@@ -10,7 +10,7 @@ const props = defineProps({
 const classes = computed(() => {
     return props.active
         ? 'border-white text-white'
-        : 'border-transparent text-gray-300 hover:text-gray-200 hover:border-gray-200 focus:text-gray-200 focus:border-gray-200';
+        : 'border-transparent text-gray-300 hover:text-white hover:border-white';
 });
 </script>
 

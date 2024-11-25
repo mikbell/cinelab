@@ -9,7 +9,7 @@ use function Pest\Laravel\post;
 
 it('requires authentication', function () {
     post(route('posts.comments.store', Post::factory()->create()))
-    ->assertRedirect(route('login'));
+        ->assertRedirect(route('login'));
 });
 
 it('can store a comment', function () {

@@ -30,7 +30,9 @@
                 </h2>
 
                 <form
-                    @submit.prevent="addComment"
+                    @submit.prevent="
+                        commentIdBeingEdited ? updateComment() : addComment()
+                    "
                     class="mt-6"
                     v-if="$page.props.auth.user"
                 >
@@ -40,27 +42,38 @@
                         class="block w-full"
                         placeholder="Scrivi un commento..."
                         rows="3"
+                        ref="commentInputRef"
                     ></TextArea>
                     <InputError
                         class="mt-2"
                         :message="commentForm.errors.content"
                     />
 
-                    <PrimaryButton
-                        type="submit"
-                        :disabled="commentForm.processing"
-                        class="mt-4"
-                        >Invia</PrimaryButton
-                    >
+                    <div class="flex justify-end mt-4 space-x-2">
+                        <PrimaryButton
+                            type="submit"
+                            :disabled="commentForm.processing"
+                            v-text="
+                                commentIdBeingEdited
+                                    ? 'Modifica commento'
+                                    : 'Aggiungi commento'
+                            "
+                        ></PrimaryButton>
+
+                        <SecondaryButton
+                            v-if="commentIdBeingEdited"
+                            type="button"
+                            @click="cancelCommentEdit"
+                            v-text="'Annulla'"
+                        ></SecondaryButton>
+                    </div>
                 </form>
 
                 <!-- Lista dei commenti -->
-                <div
-                    v-if="comments.data.length"
-                    class="mt-6 space-y-4 divide-y divide-gray-200"
-                >
+                <div v-if="comments.data.length" class="mt-6 space-y-4">
                     <Comment
                         @delete="deleteComment"
+                        @edit="editComment"
                         v-for="comment in comments.data"
                         :key="comment.id"
                         :comment="comment"
@@ -85,16 +98,18 @@
 
 <script setup>
 import { useForm, router } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { relativeDate } from "@/Utilities/date";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Container from "@/Components/Container.vue";
 import Pagination from "@/Components/Pagination.vue";
 import Comment from "@/Components/Comment.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextArea from "@/Components/TextArea.vue";
 import InputError from "@/Components/InputError.vue";
+import { useConfirm } from "@/Utilities/Composables/useConfirm";
 
 const props = defineProps({
     post: {
@@ -113,6 +128,27 @@ const commentForm = useForm({
     content: "",
 });
 
+const commentInputRef = ref(null);
+
+const commentIdBeingEdited = ref(null);
+
+const commentBeingEdited = computed(() =>
+    props.comments.data.find(
+        (comment) => comment.id === commentIdBeingEdited.value
+    )
+);
+
+const editComment = (commentId) => {
+    commentIdBeingEdited.value = commentId;
+    commentForm.content = commentBeingEdited.value?.content;
+    commentInputRef.value.focus();
+};
+
+const cancelCommentEdit = () => {
+    commentIdBeingEdited.value = null;
+    commentForm.reset();
+};
+
 const addComment = () => {
     commentForm.post(route("posts.comments.store", props.post.id), {
         preserveScroll: true,
@@ -120,7 +156,30 @@ const addComment = () => {
     });
 };
 
-const deleteComment = (commentId) =>
+const { confirmation } = useConfirm();
+
+const updateComment = async () => {
+    if (!(await confirmation("Vuoi modificare il commento?"))) {
+        return;
+    }
+
+    commentForm.put(
+        route("comments.update", {
+            comment: commentIdBeingEdited.value,
+            page: props.comments.meta.current_page,
+        }),
+        {
+            preserveScroll: true,
+            onSuccess: () => cancelCommentEdit(),
+        }
+    );
+};
+
+const deleteComment = async (commentId) => {
+    if (!(await confirmation("Vuoi eliminare il commento?"))) {
+        return;
+    }
+
     router.delete(
         route("comments.destroy", {
             comment: commentId,
@@ -130,4 +189,5 @@ const deleteComment = (commentId) =>
             preserveScroll: true,
         }
     );
+};
 </script>

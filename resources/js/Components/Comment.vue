@@ -1,5 +1,5 @@
 <template>
-    <div class="items-start pt-4 sm:flex">
+    <div class="flex items-start pt-4">
         <!-- Avatar -->
         <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
             <img
@@ -11,22 +11,44 @@
 
         <!-- Comment Content -->
         <div class="flex-1">
-            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                <p class="text-sm text-gray-800 break-all">
+            <div class="p-4 bg-gray-100 border rounded-lg shadow-sm">
+                <p class="text-sm text-gray-800 break-words">
                     {{ comment.content }}
                 </p>
             </div>
-            <div class="mt-2 text-xs text-gray-500">
-                By
-                <span class="font-medium text-gray-700">
-                    {{ comment.user.name }}
-                </span>
-                <span class="ml-2">{{ relativeDate(comment.created_at) }}</span>
-            </div>
-            <div>
-                <form v-if="canDelete" @submit.prevent="$emit('delete', comment.id)">
-                    <button type="submit" class="text-red-500">Delete</button>
-                </form>
+            <div class="flex justify-between mt-2 text-xs text-gray-500">
+                <!-- User Info -->
+                <div>
+                    By
+                    <span class="font-medium text-gray-700">
+                        {{ comment.user.name }}
+                    </span>
+                    <span class="ml-2">
+                        {{ relativeDate(comment.created_at) }}
+                    </span>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex space-x-3">
+                    <button
+                        v-if="comment.can?.update"
+                        type="button"
+                        @click="$emit('edit', comment.id)"
+                        class="text-blue-500 hover:underline"
+                        aria-label="Edit Comment"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        v-if="comment.can?.delete"
+                        type="button"
+                        @click="$emit('delete', comment.id)"
+                        class="text-red-500 hover:underline"
+                        aria-label="Delete Comment"
+                    >
+                        Delete
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -34,14 +56,7 @@
 
 <script setup>
 import { relativeDate } from "@/Utilities/date.js";
-import { router, usePage} from "@inertiajs/vue3";
-import { computed } from "vue";
 
 const props = defineProps(["comment"]);
-
-const emit = defineEmits(["delete"]);
-
-const canDelete = computed(
-    () => props.comment.user.id === usePage().props.auth.user.id
-);
+const emit = defineEmits(["edit", "delete"]);
 </script>
