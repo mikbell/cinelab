@@ -40,15 +40,15 @@ class TopicSeeder extends Seeder
                 'description' => 'Segnala problemi o malfunzionamenti riscontrati nel forum. Aiutaci a migliorare!',
             ],
             [
+                'slug' => 'domande',
+                'name' => 'Domande',
+                'description' => 'Hai domande sui film, attori o registi? Postale qui e trova risposte dalla community.',
+            ],
+            [
                 'slug' => 'altro',
                 'name' => 'Altro',
                 'description' => 'Per discussioni che non rientrano nelle altre categorie. Sentiti libero di condividere qualsiasi cosa qui.',
             ],
-            [
-                'slug' => 'domande',
-                'name' => 'Domande',
-                'description' => 'Hai domande sui film, attori o registi? Postale qui e trova risposte dalla community.',
-            ]
         ];
 
         Topic::upsert($data, ['slug']);

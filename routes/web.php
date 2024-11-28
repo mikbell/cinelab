@@ -17,13 +17,14 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::resource('posts', PostController::class)->only('store', 'create', 'update', 'destroy')->middleware('can:create,App\Models\Post');;
+    Route::resource('posts', PostController::class)->only('store', 'create', 'update', 'destroy')->middleware('can:create,App\Models\Post');
+    ;
     Route::resource('posts.comments', CommentController::class)->shallow()->only('store', 'destroy', 'update');
 });
 
 Route::get('/', [MovieController::class, 'dashboard'])->name('dashboard');
 
-Route::resource('posts', PostController::class)->only('index');
+Route::get('/posts/{topic?}', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');

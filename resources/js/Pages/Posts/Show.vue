@@ -8,7 +8,11 @@
         </template>
 
         <Container>
-            <!-- Dettagli del post -->
+            <div class="mb-4">
+                <Pill :href="route('posts.index', post.topic.slug)">
+                    {{ post.topic.name }}
+                </Pill>
+            </div>
             <div class="p-6 mb-8 bg-white rounded-lg shadow-lg">
                 <p class="mb-4 text-sm text-gray-500">
                     Pubblicato {{ formattedDate }} da
@@ -101,6 +105,7 @@ import { computed, ref } from "vue";
 import { relativeDate } from "@/Utilities/date";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Container from "@/Components/Container.vue";
+import Pill from "@/Components/Pill.vue";
 import Pagination from "@/Components/Pagination.vue";
 import Comment from "@/Components/Comment.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";

@@ -2,20 +2,36 @@
     <AppLayout title="Posts">
         <!-- Header -->
         <template #header>
-            <h2 class="text-3xl font-bold text-center text-gray-900">Posts</h2>
+            <h2
+                class="text-3xl font-bold text-center text-gray-900"
+                v-text="selectedTopic ? selectedTopic.name : 'Tutti i post'"
+            ></h2>
+
+            <p
+                v-if="selectedTopic"
+                class="mt-1 text-sm text-center text-gray-600"
+            >
+                {{ selectedTopic.description }}
+            </p>
         </template>
 
         <!-- Lista dei post -->
         <Container>
-            <div class="mb-6" v-if="$page.props.auth.user">
-                <PrimaryButton
-                    as="link"
-                    :href="route('posts.create')"
-                    class="px-4 py-2 text-white bg-blue-500 rounded"
-                >
-                    Crea Post
-                </PrimaryButton>
-            </div>
+            <menu class="flex pb-4 mb-4 space-x-1 overflow-auto">
+                <li>
+                    <Pill :href="route('posts.index')" :filled="!selectedTopic"
+                        >Tutti i post
+                    </Pill>
+                </li>
+
+                <li v-for="topic in topics" :key="topic.id">
+                    <Pill
+                        :href="route('posts.index', topic.slug)"
+                        :filled="topic.id === selectedTopic?.id"
+                        >{{ topic.name }}
+                    </Pill>
+                </li>
+            </menu>
 
             <ul class="space-y-6">
                 <li
@@ -37,7 +53,9 @@
                         </p>
                     </Link>
 
-                    <Link href="/" class="px-2 py-0.5 text-sm text-blue-400 transition duration-150 ease-in-out border border-blue-400 rounded-full hover:bg-blue-400 hover:text-white">{{ post.topic.name }} </Link>
+                    <Pill :href="route('posts.index', post.topic.slug)"
+                        >{{ post.topic.name }}
+                    </Pill>
                 </li>
             </ul>
         </Container>
@@ -52,11 +70,15 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import Pagination from "@/Components/Pagination.vue";
 import Container from "@/Components/Container.vue";
+import Pill from "@/Components/Pill.vue";
 import { relativeDate } from "@/Utilities/date";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import "remixicon/fonts/remixicon.css";
 
 const props = defineProps({
-    posts: Object, // Aggiornato da Array a Object per includere `meta` e `data`
+    posts: Object,
+    topics: Object,
+    selectedTopic: Object,
 });
 
 const formattedDate = (post) => relativeDate(post.created_at);

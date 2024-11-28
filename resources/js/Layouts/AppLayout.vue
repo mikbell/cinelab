@@ -135,6 +135,12 @@ const navLinks = [
                                         >
                                             API Tokens
                                         </DropdownLink>
+
+                                        <DropdownLink
+                                            :href="route('posts.create')"
+                                        >
+                                            Crea Post
+                                        </DropdownLink>
                                         <form @submit.prevent="logout">
                                             <DropdownLink as="button">
                                                 Log Out
@@ -245,7 +251,7 @@ const navLinks = [
                 </div>
             </footer>
         </div>
-        
+
         <ConfirmationModalWrapper />
     </div>
 </template>

@@ -2,12 +2,14 @@
 
 use App\Models\Post;
 use App\Models\User;
-use function Pest\Laravel\actingAs;
+use App\Models\Topic;
 use function Pest\Laravel\post;
+use function Pest\Laravel\actingAs;
 
 beforeEach(function () {
-    $this->validData = [
+    $this->validData = fn() => [
         'title' => 'Hello World',
+        'topic_id' => Topic::factory()->create()->getKey(),
         'content' => str_repeat('a', Post::CONTENT_MIN_LENGTH),
     ];
 });
@@ -20,11 +22,12 @@ it('requires authentication', function () {
 // Test per salvare un post
 it('stores a post', function () {
     $user = User::factory()->create();
+    $data = value($this->validData);
 
-    actingAs($user)->post(route('posts.store'), $this->validData);
+    actingAs($user)->post(route('posts.store'), $data);
 
     $this->assertDatabaseHas('posts', [
-        ...$this->validData,
+        ...$data,
         'user_id' => $user->id,
     ]);
 });
@@ -34,7 +37,7 @@ it('redirects to the post show page', function () {
     $user = User::factory()->create();
 
     $response = actingAs($user)
-        ->post(route('posts.store'), $this->validData);
+        ->post(route('posts.store'), value($this->validData));
 
     $post = Post::latest('id')->first();
 
@@ -44,7 +47,7 @@ it('redirects to the post show page', function () {
 // Test per dati non validi
 it('requires valid data', function (array $badData, array|string $errors) {
     actingAs(User::factory()->create())
-        ->post(route('posts.store'), [...$this->validData, ...$badData])
+        ->post(route('posts.store'), [...value($this->validData), ...$badData])
         ->assertInvalid($errors);
 })->with([
             [['title' => null], 'title'],
@@ -53,6 +56,8 @@ it('requires valid data', function (array $badData, array|string $errors) {
             [['title' => 1.5], 'title'],
             [['title' => str_repeat('a', Post::TITLE_MAX_LENGTH + 1)], 'title'],
             [['title' => str_repeat('a', Post::TITLE_MIN_LENGTH - 1)], 'title'],
+            [['topic_id' => null], 'topic_id'],
+            [['topic_id' => -1], 'topic_id'],
             [['content' => null], 'content'],
             [['content' => true], 'content'],
             [['content' => 1], 'content'],

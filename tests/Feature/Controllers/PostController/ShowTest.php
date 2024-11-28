@@ -16,7 +16,7 @@ it('can show a post', function () {
 
 it('passes a post to the view', function () {
     $post = Post::factory()->create();
-    $post->load('user'); // Carica la relazione con l'utente
+    $post->load('user', 'topic'); // Carica la relazione con l'utente
 
     get($post->showRoute())
         ->assertHasResource('post', new PostResource($post));

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TopicResource;
 use App\Models\Post;
+use App\Models\Topic;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\CommentResource;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PostController extends Controller
@@ -16,14 +19,19 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Topic $topic = null)
     {
+        $posts = Post::query()
+            ->with(['user', 'topic'])
+            ->when($topic, fn(Builder $query) => $query->whereBelongsTo($topic))
+            ->latest()
+            ->latest('id')
+            ->paginate();
+
         return inertia('Posts/Index', [
-            'posts' => PostResource::collection(Post::query()
-                ->with(['user', 'topic'])
-                ->latest()
-                ->latest('id')
-                ->paginate())
+            'posts' => PostResource::collection($posts),
+            'topics' => TopicResource::collection(Topic::all()),
+            'selectedTopic' => fn() => $topic ? TopicResource::make($topic) : null
         ]);
     }
 
@@ -32,7 +40,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        return inertia('Posts/Create');
+        return inertia(
+            'Posts/Create',
+            [
+                'topics' => fn() => TopicResource::collection(Topic::all())
+            ]
+        );
     }
 
     /**
@@ -47,6 +60,7 @@ class PostController extends Controller
                 'min:' . Post::TITLE_MIN_LENGTH,
                 'max:' . Post::TITLE_MAX_LENGTH,
             ],
+            'topic_id' => 'required|exists:topics,id',
             'content' => [
                 'required',
                 'string',
@@ -60,7 +74,7 @@ class PostController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return redirect($post->showRoute())->banner('Post creato con successo.');	
+        return redirect($post->showRoute())->banner('Post creato con successo.');
     }
 
     /**
@@ -72,11 +86,11 @@ class PostController extends Controller
             return redirect($post->showRoute($request->query()), 301);
         }
 
-        $post->load('user');
+        $post->load('user', 'topic');
 
         return inertia('Posts/Show', [
             'post' => fn() => PostResource::make($post),
-            'comments' => fn() => CommentResource::collection($post->comments()->with('user')->latest()->paginate(10))
+            'comments' => fn() => CommentResource::collection($post->comments()->with('user', )->latest()->paginate(10))
         ]);
     }
 

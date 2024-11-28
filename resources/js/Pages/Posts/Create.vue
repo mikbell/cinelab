@@ -25,6 +25,26 @@
                     <InputError class="mt-2" :message="form.errors.title" />
                 </div>
 
+                <!-- Selezione del topic -->
+                <div class="mt-3">
+                    <InputLabel for="topic_id" value="Topic" />
+                    <select
+                        id="topic_id"
+                        v-model="form.topic_id"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    >
+                        <option value="" disabled>Seleziona un topic</option>
+                        <option
+                            v-for="topic in topics"
+                            :key="topic.id"
+                            :value="topic.id"
+                        >
+                            {{ topic.name }}
+                        </option>
+                    </select>
+                    <InputError class="mt-2" :message="form.errors.topic_id" />
+                </div>
+
                 <!-- Editor Markdown per il contenuto -->
                 <div class="mt-6">
                     <InputLabel for="content" value="Content" class="sr-only" />
@@ -74,9 +94,17 @@ import MarkdownEditor from "@/Components/MarkdownEditor.vue";
 import { isInProduction } from "@/Utilities/environment.js";
 import axios from "axios";
 
+const props = defineProps({
+    topics: {
+        type: Array,
+        default: () => [],
+    },
+});
+
 // Stato del form
 const form = useForm({
     title: "",
+    topic_id: props.topics.length ? props.topics[0].id : "", // Seleziona il primo topic come default
     content: "",
 });
 
