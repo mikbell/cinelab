@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Inertia\Testing\AssertableInertia;
 

@@ -9,12 +9,13 @@
 
         <Container>
             <form @submit.prevent="createPost">
+                <!-- Input per il titolo -->
                 <div>
                     <InputLabel for="title" value="Title" class="sr-only" />
                     <TextInput
                         id="title"
                         v-model="form.title"
-                        placeholder="Title"
+                        placeholder="Titolo del post"
                         type="text"
                         class="block w-full mt-1"
                         required
@@ -24,27 +25,36 @@
                     <InputError class="mt-2" :message="form.errors.title" />
                 </div>
 
-                <div class="mt-4">
+                <!-- Editor Markdown per il contenuto -->
+                <div class="mt-6">
                     <InputLabel for="content" value="Content" class="sr-only" />
-                    <TextArea
-                        id="content"
-                        v-model="form.content"
-                        placeholder="Content"
-                        class="block w-full mt-1"
-                        required
-                        autocomplete="content"
-                    ></TextArea>
+                    <MarkdownEditor v-model="form.content">
+                        <!-- Toolbar personalizzata -->
+                        <template #toolbar="{ editor }">
+                            <li v-if="!isInProduction()">
+                                <button
+                                    @click="autofill"
+                                    type="button"
+                                    class="px-3 py-2 rounded-md hover:bg-gray-100"
+                                    title="Autocompleta"
+                                >
+                                    <i class="ri-article-line"></i>
+                                    <span class="ml-1 text-sm">Autofill</span>
+                                </button>
+                            </li>
+                        </template>
+                    </MarkdownEditor>
                     <InputError class="mt-2" :message="form.errors.content" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <!-- Pulsante di invio -->
+                <div class="flex items-center justify-end mt-6">
                     <PrimaryButton
                         type="submit"
-                        class="ml-4"
-                        :class="{ 'opacity-25': form.processing }"
+                        :class="{ 'opacity-50': form.processing }"
                         :disabled="form.processing"
                     >
-                        Save
+                        Salva
                     </PrimaryButton>
                 </div>
             </form>
@@ -57,17 +67,34 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Container from "@/Components/Container.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import TextArea from "@/Components/TextArea.vue";
 import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm } from "@inertiajs/vue3";
+import MarkdownEditor from "@/Components/MarkdownEditor.vue";
+import { isInProduction } from "@/Utilities/environment.js";
+import axios from "axios";
 
+// Stato del form
 const form = useForm({
     title: "",
     content: "",
 });
 
+// Funzione per creare il post
 const createPost = () => {
     form.post(route("posts.store"));
+};
+
+// Funzione di autocompletamento (solo in ambiente non di produzione)
+const autofill = async () => {
+    if (isInProduction()) return;
+
+    try {
+        const response = await axios.get("/local/post-content");
+        form.title = response.data.title;
+        form.content = response.data.content;
+    } catch (error) {
+        console.error("Errore durante l'autofill:", error);
+    }
 };
 </script>

@@ -32,7 +32,7 @@ it('redirects to the post', function () {
 
     actingAs(User::factory()->create())->post(route('posts.comments.store', $post), [
         'content' => 'test comment',
-    ])->assertRedirect(route('posts.show', $post));
+    ])->assertRedirect($post->showRoute());
 });
 
 it('requires valid content', function ($value) {

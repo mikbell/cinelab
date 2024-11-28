@@ -11,10 +11,11 @@
 
         <!-- Comment Content -->
         <div class="flex-1">
-            <div class="p-4 bg-gray-100 border rounded-lg shadow-sm">
-                <p class="text-sm text-gray-800 break-words">
-                    {{ comment.content }}
-                </p>
+            <div class="p-4 mt-1 bg-gray-100 border rounded-lg shadow-sm">
+                <div
+                    class="prose-sm prose max-w-none"
+                    v-html="comment.html"
+                ></div>
             </div>
             <div class="flex justify-between mt-2 text-xs text-gray-500">
                 <!-- User Info -->

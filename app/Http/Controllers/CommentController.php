@@ -24,8 +24,8 @@ class CommentController extends Controller
             ->associate($post)
             ->save();
 
-        return to_route('posts.show', $post)->banner('Comment added');
-    }
+            return redirect($post->showRoute())->banner('Commento creato con successo');
+        }
 
     /**
      * Update the specified resource in storage.
@@ -40,7 +40,7 @@ class CommentController extends Controller
 
         $comment->update($data);
 
-        return to_route('posts.show', ['post' => $comment->post_id, 'page' => $request->query('page')])->banner('Comment updated');
+        return redirect($comment->post->showRoute(['page' => $request->query('page')]))->banner('Commento modificato con successo');
     }
 
     /**
@@ -53,6 +53,6 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return to_route('posts.show', [$comment->post_id, 'page' => $request->query('page')])->banner('Comment deleted');
+        return redirect($comment->post->showRoute(['page' => $request->query('page')]))->banner('Commento eliminato con successo');
     }
 }

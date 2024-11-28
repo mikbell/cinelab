@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Topic;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use App\Support\PostFixtures;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PostFactory extends Factory
 {
+    private static Collection $fixtures;
     /**
      * Define the model's default state.
      *
@@ -20,8 +23,14 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'topic_id' => Topic::factory(),
             'title' => str(fake()->sentence())->beforeLast('.')->title(),
-            'content' => Collection::times(5, fn() => fake()->realText(1250))->join(PHP_EOL.PHP_EOL),
+            'content' => Collection::times(5, fn() => fake()->realText(1250))->join(PHP_EOL . PHP_EOL),
         ];
+    }
+
+    public function withFixture(): static
+    {
+        return $this->sequence(...PostFixtures::getFixtures());
     }
 }

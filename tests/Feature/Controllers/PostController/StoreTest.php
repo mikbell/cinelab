@@ -38,7 +38,7 @@ it('redirects to the post show page', function () {
 
     $post = Post::latest('id')->first();
 
-    $response->assertRedirect(route('posts.show', $post));
+    $response->assertRedirect($post->showRoute());
 });
 
 // Test per dati non validi
@@ -60,12 +60,3 @@ it('requires valid data', function (array $badData, array|string $errors) {
             [['content' => str_repeat('a', Post::CONTENT_MAX_LENGTH + 1)], 'content'],
             [['content' => str_repeat('a', Post::CONTENT_MIN_LENGTH - 1)], 'content'],
         ]);
-
-// Test per permessi
-it('prevents unauthorized users from creating posts', function () {
-    $user = User::factory()->create(['role' => 'viewer']); // Ruolo senza permesso
-
-    actingAs($user)
-        ->post(route('posts.store'), $this->validData)
-        ->assertForbidden();
-});

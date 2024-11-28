@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->cascadeOnDelete();
             $table->foreignIdFor(Post::class)->cascadeOnDelete();
             $table->longText('content');
+            $table->longText('html');
             $table->timestamps();
         });
     }

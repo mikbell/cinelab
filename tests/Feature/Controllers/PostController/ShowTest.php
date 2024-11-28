@@ -10,7 +10,7 @@ use App\Http\Resources\PostResource;
 it('can show a post', function () {
     $post = Post::factory()->create();
 
-    get(route('posts.show', $post))
+    get($post->showRoute())
         ->assertComponent('Posts/Show');
 });
 
@@ -18,7 +18,7 @@ it('passes a post to the view', function () {
     $post = Post::factory()->create();
     $post->load('user'); // Carica la relazione con l'utente
 
-    get(route('posts.show', $post))
+    get($post->showRoute())
         ->assertHasResource('post', new PostResource($post));
 });
 
@@ -28,9 +28,16 @@ it('passes comments to the view', function () {
 
     $comments = Comment::factory(5)->for($post)->create()->sortBy('created_at');
 
-    get(route('posts.show', $post))
+    get($post->showRoute())
         ->assertHasPaginatedResource(
             'comments',
-            CommentResource::collection($comments->values()) // Converte in una Collection ordinata
+            CommentResource::collection($comments->reverse()) // Converte in una Collection ordinata
         );
+})->only();
+
+it('will redirect if the slug is incorrect', function () {
+    $post = Post::factory()->create(['title' => 'Hello world']);
+
+    get(route('posts.show', [$post, 'foo-bar', 'page' => 2]))
+        ->assertRedirect($post->showRoute(['page' => 2]));
 });

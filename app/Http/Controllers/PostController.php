@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\CommentResource;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PostController extends Controller
 {
-    
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -17,7 +20,7 @@ class PostController extends Controller
     {
         return inertia('Posts/Index', [
             'posts' => PostResource::collection(Post::query()
-                ->with('user')
+                ->with(['user', 'topic'])
                 ->latest()
                 ->latest('id')
                 ->paginate())
@@ -49,7 +52,7 @@ class PostController extends Controller
                 'string',
                 'min:' . Post::CONTENT_MIN_LENGTH,
                 'max:' . Post::CONTENT_MAX_LENGTH,
-            ],
+            ]
         ]);
 
         $post = Post::create([
@@ -57,14 +60,18 @@ class PostController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return redirect()->route('posts.show', $post);
+        return redirect($post->showRoute())->banner('Post creato con successo.');	
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Request $request, Post $post)
     {
+        if (!Str::contains($post->showRoute(), $request->path())) {
+            return redirect($post->showRoute($request->query()), 301);
+        }
+
         $post->load('user');
 
         return inertia('Posts/Show', [
@@ -94,6 +101,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post); // Assicurati di avere una policy definita
+        $post->delete();
+
+        return redirect()->route('posts.index')->banner('success', 'Post eliminato con successo.');
     }
+
 }

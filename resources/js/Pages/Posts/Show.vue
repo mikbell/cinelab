@@ -17,10 +17,9 @@
                     </span>
                 </p>
                 <article
-                    class="prose whitespace-pre-wrap max-w-none prose-gray"
-                >
-                    {{ post.content }}
-                </article>
+                    class="prose max-w-none prose-gray"
+                    v-html="post.html"
+                ></article>
             </div>
 
             <!-- Sezione commenti -->
@@ -37,13 +36,13 @@
                     v-if="$page.props.auth.user"
                 >
                     <InputLabel class="sr-only" value="Commento" />
-                    <TextArea
+                    <MarkdownEditor
                         v-model="commentForm.content"
                         class="block w-full"
                         placeholder="Scrivi un commento..."
-                        rows="3"
                         ref="commentInputRef"
-                    ></TextArea>
+                        editorClass="min-h-[160px]"
+                    />
                     <InputError
                         class="mt-2"
                         :message="commentForm.errors.content"
@@ -107,7 +106,7 @@ import Comment from "@/Components/Comment.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import TextArea from "@/Components/TextArea.vue";
+import MarkdownEditor from "@/Components/MarkdownEditor.vue";
 import InputError from "@/Components/InputError.vue";
 import { useConfirm } from "@/Utilities/Composables/useConfirm";
 

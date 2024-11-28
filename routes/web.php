@@ -23,7 +23,8 @@ Route::middleware([
 
 Route::get('/', [MovieController::class, 'dashboard'])->name('dashboard');
 
-Route::resource('posts', PostController::class)->only('index', 'show');
+Route::resource('posts', PostController::class)->only('index');
+Route::get('/posts/{post}/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');

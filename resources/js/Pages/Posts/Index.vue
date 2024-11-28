@@ -17,26 +17,29 @@
                 </PrimaryButton>
             </div>
 
-            <div class="space-y-6">
-                <Link
-                    :href="route('posts.show', post)"
+            <ul class="space-y-6">
+                <li
                     v-for="post in posts.data"
                     :key="post.id"
-                    class="block p-6 transition-shadow duration-200 bg-white rounded-lg shadow-md group hover:shadow-lg"
+                    class="flex flex-col items-baseline justify-between p-6 transition-shadow duration-200 bg-white rounded-lg shadow-md md:flex-row group hover:shadow-lg"
                 >
-                    <h2
-                        class="text-xl font-bold text-gray-800 transition duration-150 group-hover:text-blue-600"
-                    >
-                        {{ post.title }}
-                    </h2>
-                    <p class="mt-2 text-sm text-gray-600">
-                        {{ formattedDate(post) }} by
-                        <span class="font-semibold text-gray-700">{{
-                            post.user.name
-                        }}</span>
-                    </p>
-                </Link>
-            </div>
+                    <Link :href="post.routes.show">
+                        <h2
+                            class="text-xl font-bold text-gray-800 transition duration-150 group-hover:text-blue-600"
+                        >
+                            {{ post.title }}
+                        </h2>
+                        <p class="mt-2 text-sm text-gray-600">
+                            {{ formattedDate(post) }} by
+                            <span class="font-semibold text-gray-700">{{
+                                post.user.name
+                            }}</span>
+                        </p>
+                    </Link>
+
+                    <Link href="/" class="px-2 py-0.5 text-sm text-blue-400 transition duration-150 ease-in-out border border-blue-400 rounded-full hover:bg-blue-400 hover:text-white">{{ post.topic.name }} </Link>
+                </li>
+            </ul>
         </Container>
 
         <!-- Paginazione -->
