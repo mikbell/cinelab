@@ -59,10 +59,6 @@
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
                                         fill="currentColor"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
                                         class="w-4 h-4 text-yellow-500"
                                     >
                                         <path
@@ -100,9 +96,16 @@
                             >
                                 Back to List
                             </PrimaryButton>
-                            <SecondaryButton>
+                            <SecondaryButton
+                                v-if="!isFavorite"
+                                @click="toggleFavorite"
+                            >
                                 Add to Favorites
                             </SecondaryButton>
+
+                            <DangerButton v-else @click="toggleFavorite">
+                                Remove from Favorites
+                            </DangerButton>
                         </div>
                     </div>
                 </div>
@@ -115,11 +118,18 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import Container from "@/Components/Container.vue";
+import { ref } from "vue";
+import axios from "axios";
 
 const props = defineProps({
     movie: Object,
+    isFavorite: Boolean, // Determina se il film è già nei preferiti
 });
+
+// Stato per i preferiti
+const isFavorite = ref(props.isFavorite);
 
 // Formatta la data
 const formatDate = (dateString) => {
@@ -144,5 +154,26 @@ const formatRuntime = (runtime) => {
 const formatGenres = (genres) => {
     if (!genres || !genres.length) return "Unknown genres";
     return genres.map((genre) => genre.name).join(", ");
+};
+
+const toggleFavorite = async () => {
+    try {
+        if (isFavorite.value) {
+            await axios.delete(
+                route("favorites.destroy", { movie: props.movie.id })
+            );
+        } else {
+            await axios.post(
+                route("favorites.store", { movie: props.movie.id }),
+                {
+                    title: props.movie.title,
+                    poster_path: props.movie.poster_path,
+                }
+            );
+        }
+        isFavorite.value = !isFavorite.value;
+    } catch (error) {
+        console.error("Errore nella gestione dei preferiti:", error);
+    }
 };
 </script>

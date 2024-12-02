@@ -1,4 +1,4 @@
-# **"Il Padrino"**
+# Il Padrino
 
 ## Punti Chiave
 

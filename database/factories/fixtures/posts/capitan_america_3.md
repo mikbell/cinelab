@@ -1,4 +1,4 @@
-# Captain America: Civil War(2016)
+# Captain America: Civil War (2016)
 
 - **Punti Chiave**: 
   - Conflitto emotivo tra Steve Rogers e Tony Stark, che divide gli Avengers.

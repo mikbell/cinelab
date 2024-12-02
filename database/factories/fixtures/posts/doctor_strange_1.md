@@ -1,4 +1,4 @@
-# Doctor Strange(2016)
+# Doctor Strange (202016)
 
 - **Punti Chiave**: 
   - Introduzione di Benedict Cumberbatch nei panni di Stephen Strange, un eroe complesso e affascinante.

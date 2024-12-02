@@ -1,4 +1,4 @@
-# Shang-Chi e la leggenda dei Dieci Anelli(2021)
+# Shang-Chi e la leggenda dei Dieci Anelli (2021)
 
 - **Punti Chiave**: 
   - Simu Liu è perfetto nel ruolo di Shang-Chi, un eroe nuovo e affascinante.

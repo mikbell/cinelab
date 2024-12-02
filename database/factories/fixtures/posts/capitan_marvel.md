@@ -1,4 +1,4 @@
-# Captain Marvel(2019)
+# Captain Marvel (2019)
 
 - **Punti Chiave**: 
   - Brie Larson introduce Carol Danvers, un'eroina potente e determinata.

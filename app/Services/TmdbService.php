@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Jobs\FetchPopularMoviesJob;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class TmdbService
 {
@@ -21,22 +21,21 @@ class TmdbService
         $this->baseUrl = 'https://api.themoviedb.org/3';
     }
 
-
-    // Funzione per ottenere tutti i film
-
-    public function getPopularMovies($page = 1)
+    /**
+     * Metodo generico per effettuare richieste HTTP all'API TMDb.
+     */
+    private function fetchFromTmdb(string $endpoint, array $params = [], string $cacheKey = null)
     {
-        $cacheKey = "popular_movies_page_{$page}";
-
-        return Cache::remember($cacheKey, 3600, function () use ($page) {
-            $response = Http::get("{$this->baseUrl}/discover/movie", [
+        $cacheKey ??= md5($endpoint . serialize($params));
+        
+        return Cache::remember($cacheKey, 3600, function () use ($endpoint, $params) {
+            $response = Http::get("{$this->baseUrl}{$endpoint}", array_merge($params, [
                 'api_key' => $this->apiKey,
                 'language' => 'it-IT',
-                'page' => $page,
-            ]);
+            ]));
 
             if ($response->failed()) {
-                \Log::error("Errore nella richiesta TMDb per i film popolari.", [
+                Log::error("Errore nella richiesta TMDb: {$endpoint}", [
                     'status' => $response->status(),
                     'body' => $response->body(),
                 ]);
@@ -48,75 +47,39 @@ class TmdbService
         });
     }
 
+    public function getPopularMovies($page = 1)
+    {
+        return $this->fetchFromTmdb('/discover/movie', ['page' => $page], "popular_movies_page_{$page}");
+    }
+
     public function getTopRatedMovies($page = 1)
     {
-        $cacheKey = "top_rated_movies_page_{$page}";
-
-        return Cache::remember($cacheKey, 3600, function () use ($page) {
-            $response = Http::get("{$this->baseUrl}/movie/top_rated", [
-                'api_key' => $this->apiKey,
-                'language' => 'it-IT',
-                'page' => $page,
-            ]);
-
-            return $response->json();
-        });
+        return $this->fetchFromTmdb('/movie/top_rated', ['page' => $page], "top_rated_movies_page_{$page}");
     }
 
     public function getNowPlayingMovies($page = 1)
     {
-        $cacheKey = "now_playing_movies_page_{$page}";
-
-        return Cache::remember($cacheKey, 3600, function () use ($page) {
-            $response = Http::get("{$this->baseUrl}/movie/now_playing", [
-                'api_key' => $this->apiKey,
-                'language' => 'it-IT',
-                'page' => $page,
-            ]);
-
-            return $response->json();
-        });
+        return $this->fetchFromTmdb('/movie/now_playing', ['page' => $page], "now_playing_movies_page_{$page}");
     }
 
     public function getMoviesByGenre($genreId, $page = 1)
     {
-        $cacheKey = "genre_{$genreId}_movies_page_{$page}";
-
-        return Cache::remember($cacheKey, 3600, function () use ($genreId, $page) {
-            $response = Http::get("{$this->baseUrl}/discover/movie", [
-                'api_key' => $this->apiKey,
-                'language' => 'it-IT',
-                'with_genres' => $genreId,
-                'page' => $page,
-            ]);
-
-            return $response->json();
-        });
+        return $this->fetchFromTmdb('/discover/movie', [
+            'with_genres' => $genreId,
+            'page' => $page,
+        ], "genre_{$genreId}_movies_page_{$page}");
     }
 
-
-    // Funzione per cercare film
     public function searchMovies(string $query, int $page = 1)
     {
-        $response = Http::get("{$this->baseUrl}/search/movie", [
-            'api_key' => $this->apiKey,
+        return $this->fetchFromTmdb('/search/movie', [
             'query' => $query,
             'page' => $page,
-            'language' => 'it-IT', // Per risultati in italiano
         ]);
-
-        return $response->json();
     }
 
     public function getMovieDetails(int|string $movieId)
     {
-        $response = Http::get("{$this->baseUrl}/movie/{$movieId}", [
-            'api_key' => $this->apiKey,
-            'language' => 'it-IT',
-        ]);
-
-        return $response->json();
+        return $this->fetchFromTmdb("/movie/{$movieId}");
     }
-
 }
-

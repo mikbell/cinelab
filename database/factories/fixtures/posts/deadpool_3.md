@@ -1,4 +1,4 @@
-# Deadpool 3(2024)
+# Deadpool 3 (2024)
 
 - **Punti Chiave**: 
   - Primo film con Deadpool ufficialmente integrato nell’MCU.

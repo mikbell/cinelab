@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Post::class)->cascadeOnDelete();
             $table->longText('content');
             $table->longText('html');
+            $table->unsignedBigInteger('likes_count')->default(0);
             $table->timestamps();
         });
     }

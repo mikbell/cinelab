@@ -1,4 +1,4 @@
-# Terrifier 2(2022)
+# Terrifier 2 (2022)
 
 - **Punti Chiave**: 
   - Espansione significativa della mitologia di Art the Clown e del suo universo.

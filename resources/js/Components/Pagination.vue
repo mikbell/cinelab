@@ -3,7 +3,7 @@
         <!-- Mobile View -->
         <div class="flex justify-between flex-1 sm:hidden">
             <Link
-                :href="meta.prev_page_url"
+                :href="previousUrl"
                 class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 :class="{
                     'opacity-50 pointer-events-none': !meta.prev_page_url,
@@ -14,7 +14,7 @@
                 Previous
             </Link>
             <Link
-                :href="meta.next_page_url"
+                :href="nextUrl"
                 class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 :class="{
                     'opacity-50 pointer-events-none': !meta.next_page_url,
@@ -75,8 +75,9 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/20/solid";
+import { computed } from "vue";
 
-defineProps({
+const props = defineProps({
     meta: {
         type: Object,
         required: true,
@@ -86,4 +87,10 @@ defineProps({
         default: () => [],
     },
 });
+
+const only = computed(() =>
+    props.only.length === 0 ? [] : [...props.only, "jetstream"]
+);
+const previousUrl = computed(() => props.meta.links[0].url);
+const nextUrl = computed(() => [...props.meta.links].reverse()[0].url);
 </script>

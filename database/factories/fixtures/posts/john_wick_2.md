@@ -1,4 +1,4 @@
-# John Wick: Capitolo 2(2017)
+# John Wick: Capitolo 2 (2017)
 
 ## Punti Chiave
 

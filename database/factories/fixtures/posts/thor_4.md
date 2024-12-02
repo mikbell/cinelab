@@ -1,4 +1,4 @@
-# Thor: Love and Thunder(2022)
+# Thor: Love and Thunder (2022)
 
 - **Punti Chiave**: 
   - Chris Hemsworth torna con il suo Thor più comico e autoironico.

@@ -1,4 +1,4 @@
-# John Wick: Capitolo 4(2023)
+# John Wick: Capitolo 4 (2023)
 
 ## Punti Chiave
 

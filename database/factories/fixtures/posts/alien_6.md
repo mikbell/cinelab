@@ -1,4 +1,4 @@
-# Alien: Covenant(2017)
+# Alien: Covenant (2017)
 
 - **Punti Chiave**: 
   - Seguito di "Prometheus", mescola il tono filosofico del predecessore con l’horror classico della saga.

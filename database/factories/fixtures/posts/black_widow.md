@@ -1,4 +1,4 @@
-# Black Widow(2021)
+# Black Widow (2021)
 
 - **Punti Chiave**: 
   - Finalmente Natasha Romanoff (Scarlett Johansson) ha il suo film standalone, esplorando il suo passato.

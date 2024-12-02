@@ -1,4 +1,4 @@
-# Thor(2011)
+# Thor (2011)
 
 - **Punti Chiave**: 
   - Chris Hemsworth dà vita a Thor con carisma e forza, mentre Tom Hiddleston si afferma come un Loki memorabile.

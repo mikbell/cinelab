@@ -1,4 +1,4 @@
-# Thor: The Dark World(2013)
+# Thor: The Dark World (2013)
 
 - **Punti Chiave**: 
   - Introduzione dell'Aether, una delle Gemme dell’Infinito.

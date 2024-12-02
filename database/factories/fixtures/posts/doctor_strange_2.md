@@ -1,4 +1,4 @@
-# Doctor Strange nel Multiverso della Follia(2022)
+# Doctor Strange nel Multiverso della Follia (2022)
 
 - **Punti Chiave**: 
   - Regia di Sam Raimi che aggiunge un tocco horror all’MCU.

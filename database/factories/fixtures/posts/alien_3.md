@@ -1,4 +1,4 @@
-# Alien 3(1992)
+# Alien 3 (1992)
 
 - **Punti Chiave**: 
   - Diretto da David Fincher, un capitolo cupo e controverso della saga.

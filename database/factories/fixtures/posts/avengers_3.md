@@ -1,4 +1,4 @@
-# Avengers: Infinity War(2018)
+# Avengers: Infinity War (2018)
 
 - **Punti Chiave**: 
   - Thanos è il vero protagonista, un villain complesso e motivato.

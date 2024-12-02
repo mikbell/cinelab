@@ -1,4 +1,4 @@
-# Spider-Man: Homecoming(2017)
+# Spider-Man: Homecoming (2017)
 
 - **Punti Chiave**: 
   - Tom Holland offre un'interpretazione fresca e convincente di Peter Parker/Spider-Man.

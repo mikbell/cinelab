@@ -1,26 +1,43 @@
 <template>
-    <Swiper
-        :space-between="16"
-        :slides-per-view="1"
-        :breakpoints="{
-            640: { slidesPerView: 2, spaceBetween: 16 },
-            768: { slidesPerView: 3, spaceBetween: 24 },
-            1024: { slidesPerView: 4, spaceBetween: 32 },
-        }"
-        navigation
-        pagination
-    >
-        <SwiperSlide v-for="movie in movies" :key="movie.id" class="py-4">
-            <MovieCard :href="route('movies.show', movie.id)" :movie="movie" />
-        </SwiperSlide>
-    </Swiper>
+    <div class="relative py-6">
+        <!-- Swiper -->
+        <Swiper
+            :space-between="16"
+            :slides-per-view="1"
+            :breakpoints="{
+                640: { slidesPerView: 2, spaceBetween: 16 },
+                768: { slidesPerView: 3, spaceBetween: 24 },
+                1024: { slidesPerView: 4, spaceBetween: 32 },
+            }"
+            navigation
+            pagination
+            class="swiper-container"
+        >
+            <!-- Slides -->
+            <SwiperSlide
+                v-for="movie in movies"
+                :key="movie.id"
+                class="py-6"
+            >
+                <MovieCard
+                    :href="route('movies.show', movie.id)"
+                    :movie="movie"
+                />
+            </SwiperSlide>
+
+            <!-- Custom Navigation Buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </Swiper>
+
+        <!-- Custom Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
 </template>
 
 <script setup>
-// Importa Swiper.js e i moduli necessari
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
-
 import MovieCard from "@/Components/MovieCard.vue";
 
 // Props
@@ -31,3 +48,26 @@ const props = defineProps({
     },
 });
 </script>
+
+<style scoped>
+.swiper-container {
+    width: 100%;
+}
+.swiper-pagination-bullet {
+    background-color: #d1d5db; /* Grigio chiaro */
+    opacity: 1;
+    transition: background-color 0.3s;
+}
+.swiper-pagination-bullet-active {
+    background-color: #ef4444; /* Rosso scuro */
+}
+.swiper-button-prev,
+.swiper-button-next {
+    color: rgb(179, 179, 179); /* Grigio medio */
+    transition: color 0.3s;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    color: white; /* Rosso scuro */
+}
+</style>

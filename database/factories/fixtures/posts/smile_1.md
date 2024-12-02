@@ -1,4 +1,4 @@
-# Smile(2022)
+# Smile (2022)
 
 ## Punti Chiave
 

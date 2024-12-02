@@ -1,4 +1,4 @@
-# Guardiani della Galassia Vol. 3(2023)
+# Guardiani della Galassia Vol. 3 (2023)
 
 - **Punti Chiave**: 
   - Conclusione emozionante e soddisfacente per i Guardiani.

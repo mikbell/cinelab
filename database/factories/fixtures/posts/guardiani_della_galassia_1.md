@@ -1,4 +1,4 @@
-# Guardiani della Galassia(2014)
+# Guardiani della Galassia (2014)
 
 - **Punti Chiave**: 
   - Introduzione di nuovi personaggi come Star-Lord, Gamora, Rocket, Groot e Drax.

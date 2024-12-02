@@ -1,4 +1,4 @@
-# Terrifier 3(2024) *(ipotetico, basato su anticipazioni)*
+# Terrifier 3 (2024) *(ipotetico, basato su anticipazioni)*
 
 - **Punti Chiave**: 
   - Promette di esplorare ulteriormente le origini e le motivazioni di Art the Clown.

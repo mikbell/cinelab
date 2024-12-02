@@ -1,4 +1,4 @@
-# Captain America: The Winter Soldier(2014)
+# Captain America: The Winter Soldier (2014)
 
 - **Punti Chiave**: 
   - Tonalità più seria e matura, con elementi da thriller politico.

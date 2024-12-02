@@ -1,4 +1,4 @@
-# Alien(1979)
+# Alien (1979)
 
 - **Punti Chiave**: 
   - Diretto da Ridley Scott, un capolavoro di horror e fantascienza che ha definito un genere.

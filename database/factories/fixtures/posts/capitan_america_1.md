@@ -1,4 +1,4 @@
-# Captain America: Il primo Vendicatore(2011)
+# Captain America: Il primo Vendicatore (2011)
 
 - **Punti Chiave**: 
   - Chris Evans incarna Steve Rogers con umanità e carisma, rendendo credibile la sua trasformazione in Captain America.

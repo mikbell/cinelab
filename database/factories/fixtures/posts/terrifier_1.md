@@ -1,4 +1,4 @@
-# Terrifier(2016)
+# Terrifier (2016)
 
 - **Punti Chiave**: 
   - Introduzione di Art the Clown, un antagonista iconico e terrificante, interpretato da David Howard Thornton.

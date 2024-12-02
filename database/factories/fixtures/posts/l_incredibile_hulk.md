@@ -1,4 +1,4 @@
-# L'Incredibile Hulk(2008)
+# L'Incredibile Hulk (2008)
 
 - **Punti Chiave**: 
   - Edward Norton offre un Bruce Banner tormentato e umano.

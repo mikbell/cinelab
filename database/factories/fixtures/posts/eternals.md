@@ -1,4 +1,4 @@
-# Eternals(2021)
+# Eternals (2021)
 
 - **Punti Chiave**: 
   - Introduzione di una squadra di eroi completamente nuova con un cast stellare.

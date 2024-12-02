@@ -1,31 +1,33 @@
 <template>
     <Link
-        class="relative flex flex-col transition duration-300 bg-white rounded-lg shadow hover:shadow-lg hover:scale-105"
+        :href="`/movies/${movie.id}`"
+        class="relative flex flex-col transition duration-300 transform bg-white rounded-lg shadow hover:shadow-xl hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:outline-none"
     >
+        <!-- Poster del film -->
         <img
             :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
             alt="Poster del film"
             class="w-full h-auto rounded-t-lg"
         />
+
+        <!-- Dettagli -->
         <div class="flex-1 p-4 text-center">
-            <h4 class="text-lg font-bold text-gray-800 truncate">
+            <h4 class="text-lg font-bold text-gray-800 truncate hover:text-blue-500">
                 {{ movie.title }}
             </h4>
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="mt-1 text-sm text-gray-600">
                 {{ formatDate(movie.release_date) }}
             </p>
         </div>
+
+        <!-- Badge per il voto -->
         <span
-            class="absolute flex items-center gap-1 px-2 py-1 text-xs font-semibold text-white bg-yellow-500 rounded-lg shadow top-2 right-2"
+            class="absolute flex items-center gap-1 px-2 py-1 text-xs font-semibold text-white bg-yellow-500 rounded-full shadow-lg top-2 right-2"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
                 class="w-4 h-4"
             >
                 <path
@@ -39,6 +41,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
+
 defineProps({
     movie: {
         type: Object,

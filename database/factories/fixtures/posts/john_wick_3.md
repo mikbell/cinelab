@@ -1,4 +1,4 @@
-# John Wick: Capitolo 3 – Parabellum(2019)
+# John Wick: Capitolo 3 – Parabellum (2019)
 
 ## Punti Chiave
 

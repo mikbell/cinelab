@@ -1,4 +1,4 @@
-# Schindler's List(1993)
+# Schindler's List (1993)
 
 ## Punti Chiave
 

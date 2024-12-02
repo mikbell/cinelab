@@ -72,10 +72,15 @@ class MovieController extends Controller
 
     public function show($id)
     {
-        $movie = $this->tmdbService->getMovieDetails($id);
-
+        $movie = app(TmdbService::class)->getMovieDetails($id);
+    
+        if (!$movie) {
+            abort(404, 'Film non trovato.');
+        }
+    
         return inertia('Movies/Show', [
             'movie' => $movie,
         ]);
     }
+    
 }

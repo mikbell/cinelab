@@ -1,4 +1,4 @@
-# Black Panther(2018)
+# Black Panther (2018)
 
 - **Punti Chiave**: 
   - Chadwick Boseman dà vita a un re T'Challa imponente e carismatico.

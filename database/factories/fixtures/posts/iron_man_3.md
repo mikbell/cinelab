@@ -1,4 +1,4 @@
-# Iron Man 3(2013)
+# Iron Man 3 (2013)
 
 - **Punti Chiave**: 
   - Approfondimento psicologico di Tony Stark, che affronta il disturbo post-traumatico dopo gli eventi di "The Avengers".

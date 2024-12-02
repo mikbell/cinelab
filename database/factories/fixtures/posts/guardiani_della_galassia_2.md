@@ -1,4 +1,4 @@
-# Guardiani della Galassia Vol. 2(2017)
+# Guardiani della Galassia Vol. 2 (2017)
 
 - **Punti Chiave**: 
   - Esplorazione del tema della famiglia e delle relazioni.

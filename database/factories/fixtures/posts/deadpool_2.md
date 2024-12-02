@@ -1,4 +1,4 @@
-# Deadpool 2(2018)
+# Deadpool 2 (2018)
 
 - **Punti Chiave**: 
   - Espansione del cast con personaggi memorabili come Cable (Josh Brolin) e Domino (Zazie Beetz).

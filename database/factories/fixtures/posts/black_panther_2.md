@@ -1,4 +1,4 @@
-# Black Panther: Wakanda Forever(2022)
+# Black Panther: Wakanda Forever (2022)
 
 - **Punti Chiave**: 
   - Un omaggio emozionante a Chadwick Boseman, con una narrazione piena di rispetto.

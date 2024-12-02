@@ -1,4 +1,4 @@
-# Il Gladiatore(2000)
+# Il Gladiatore (2000)
 
 ## Punti Chiave
 

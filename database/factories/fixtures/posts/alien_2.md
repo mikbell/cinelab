@@ -1,4 +1,4 @@
-# Aliens(1986)
+# Aliens (1986)
 
 - **Punti Chiave**: 
   - Diretto da James Cameron, sposta il tono dall’horror alla fantascienza d’azione.

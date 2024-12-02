@@ -22,6 +22,7 @@ class CommentFactory extends Factory
             'post_id' => Post::factory(),
             'user_id' => User::factory(),
             'content' => fake()->realText(250),
+            'likes_count' => 0
         ];
     }
 }

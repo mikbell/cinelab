@@ -1,4 +1,4 @@
-# Prometheus (2012)
+# Prometheus  (2012)
 
 - **Punti Chiave**: 
   - Diretto da Ridley Scott, esplora le origini dello Xenomorfo e i misteri dei Creatori.

@@ -1,4 +1,4 @@
-# Ant-Man and the Wasp(2018)
+# Ant-Man and the Wasp (2018)
 
 - **Punti Chiave**: 
   - Tono leggero e divertente, perfetto dopo la gravità di "Infinity War".

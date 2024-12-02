@@ -1,4 +1,4 @@
-# Alien: La clonazione(1997)
+# Alien: La clonazione (1997)
 
 - **Punti Chiave**: 
   - Ambientazione futuristica con un tono più grottesco e sperimentale.

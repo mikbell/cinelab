@@ -1,4 +1,4 @@
-# Thor: Ragnarok(2017)
+# Thor: Ragnarok (2017)
 
 - **Punti Chiave**: 
   - Cambio radicale di tono, con una forte dose di umorismo e colori vivaci.

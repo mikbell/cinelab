@@ -1,4 +1,4 @@
-# The Avengers(2012)
+# The Avengers (2012)
 
 - **Punti Chiave**: 
   - Primo grande crossover dell'MCU, che riunisce i principali eroi della Fase 1.

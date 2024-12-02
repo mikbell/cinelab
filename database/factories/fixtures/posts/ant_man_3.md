@@ -1,4 +1,4 @@
-# Ant-Man and the Wasp: Quantumania(2023)
+# Ant-Man and the Wasp: Quantumania (2023)
 
 - **Punti Chiave**: 
   - Introduzione di Kang il Conquistatore, un villain imponente interpretato da Jonathan Majors.

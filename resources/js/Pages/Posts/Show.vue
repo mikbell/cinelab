@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <link rel="canonical" :href="post.routes.show" />
+    </Head>
+
     <AppLayout :title="post.title">
         <!-- Header -->
         <template #header>
@@ -13,18 +17,34 @@
                     {{ post.topic.name }}
                 </Pill>
             </div>
-            <div class="p-6 mb-8 bg-white rounded-lg shadow-lg">
-                <p class="mb-4 text-sm text-gray-500">
-                    Pubblicato {{ formattedDate }} da
-                    <span class="font-semibold text-gray-700">
-                        {{ post.user.name }}
-                    </span>
-                </p>
-                <article
-                    class="prose max-w-none prose-gray"
-                    v-html="post.html"
-                ></article>
+
+            <div class="flex items-center mt-4 space-x-2">
+                <LikeButton
+                    :href="route('likes.store', ['post', post.id])"
+                    :liked="false"
+                    v-if="post.can.like"
+                />
+                <LikeButton
+                    :href="route('likes.destroy', ['post', post.id])"
+                    :liked="true"
+                    method="delete"
+                    v-else
+                />
+                <span class="font-semibold text-gray-700"
+                    >{{ post.likes_count }} like</span
+                >
             </div>
+
+            <p class="mb-4 text-sm text-gray-500">
+                Pubblicato {{ formattedDate }} da
+                <span class="font-semibold text-gray-700">
+                    {{ post.user.name }}
+                </span>
+            </p>
+            <article
+                class="prose max-w-none prose-gray"
+                v-html="post.html"
+            ></article>
 
             <!-- Sezione commenti -->
             <div class="mt-12">
@@ -45,7 +65,7 @@
                         class="block w-full"
                         placeholder="Scrivi un commento..."
                         ref="commentInputRef"
-                        editorClass="min-h-[160px]"
+                        editorClass="!min-h-[160px]"
                     />
                     <InputError
                         class="mt-2"
@@ -71,6 +91,10 @@
                         ></SecondaryButton>
                     </div>
                 </form>
+
+                <p v-else class="mt-6 text-sm italic text-gray-500">
+                    Devi <Link :href="route('login')" class="text-black underline">accedere</Link> per scrivere un commento.
+                </p>
 
                 <!-- Lista dei commenti -->
                 <div v-if="comments.data.length" class="mt-6 space-y-4">
@@ -100,11 +124,12 @@
 </template>
 
 <script setup>
-import { useForm, router } from "@inertiajs/vue3";
+import { useForm, router, Head, Link } from "@inertiajs/vue3";
 import { computed, ref } from "vue";
 import { relativeDate } from "@/Utilities/date";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Container from "@/Components/Container.vue";
+import LikeButton from "@/Components/LikeButton.vue";
 import Pill from "@/Components/Pill.vue";
 import Pagination from "@/Components/Pagination.vue";
 import Comment from "@/Components/Comment.vue";
@@ -187,7 +212,10 @@ const deleteComment = async (commentId) => {
     router.delete(
         route("comments.destroy", {
             comment: commentId,
-            page: props.comments.meta.current_page,
+            page:
+                props.comments.data.length > 1
+                    ? props.comments.meta.current_page
+                    : Math.max(props.comments.meta.current_page - 1, 1),
         }),
         {
             preserveScroll: true,

@@ -1,4 +1,4 @@
-# Spider-Man: No Way Home(2021)
+# Spider-Man: No Way Home (2021)
 
 - **Punti Chiave**: 
   - Celebrazione nostalgica con il ritorno di Tobey Maguire, Andrew Garfield e i loro villain.

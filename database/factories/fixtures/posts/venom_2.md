@@ -1,4 +1,4 @@
-# Venom: La furia di Carnage(2021)
+# Venom: La furia di Carnage (2021)
 
 ## Punti Chiave
 
