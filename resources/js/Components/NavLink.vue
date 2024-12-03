@@ -11,7 +11,7 @@ const classes = computed(() => {
     return [
         "inline-flex items-center px-3 pt-1 pb-2 text-sm font-medium leading-5 border-b-2 transition duration-150 ease-in-out focus:outline-none",
         props.active
-            ? "border-white text-white hover:text-blue-400 hover:border-blue-400"
+            ? "border-white text-white"
             : "border-transparent text-gray-300 hover:text-white hover:border-white",
     ].join(" ");
 });

@@ -1,11 +1,11 @@
 <template>
-    <div class="flex gap-2 p-6 mb-6 bg-white rounded-lg shadow-lg">
-        <input
+    <div class="flex gap-2 py-6 mb-6">
+        <TextInput
             v-model="query"
             @keyup.enter="searchMovies"
             type="text"
             placeholder="Inserisci il nome del film..."
-            class="flex-1 p-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            class="flex-1 "
         />
         <PrimaryButton @click="searchMovies" :disabled="loading">
             <span v-if="!loading">Cerca</span>
@@ -18,6 +18,7 @@
 
 import { ref } from "vue";
 import PrimaryButton from "./PrimaryButton.vue";
+import TextInput from "./TextInput.vue";
 
 const props = defineProps({
     query: String,

@@ -14,7 +14,10 @@ defineProps({
 });
 
 const page = usePage();
-const user = page.props?.auth?.user || null;
+const user = usePage().props.auth?.user || null;
+if (!user) {
+    console.log("L'utente non è autenticato.");
+}
 const username = user ? user.name : "Guest";
 const showingNavigationDropdown = ref(false);
 
@@ -23,9 +26,21 @@ const logout = () => {
 };
 
 const navLinks = [
-    { name: "Dashboard", href: route("dashboard"), active: route().current("dashboard") },
-    { name: "Film", href: route("movies.index"), active: route().current("movies.index") },
-    { name: "Forum", href: route("posts.index"), active: route().current("posts.index") },
+    {
+        name: "Dashboard",
+        href: route("dashboard"),
+        active: route().current("dashboard"),
+    },
+    {
+        name: "Film",
+        href: route("movies.index"),
+        active: route().current("movies.index"),
+    },
+    {
+        name: "Forum",
+        href: route("posts.index"),
+        active: route().current("posts.index"),
+    },
 ];
 </script>
 
@@ -39,7 +54,9 @@ const navLinks = [
 
         <div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
             <!-- Barra di navigazione -->
-            <nav class="shadow-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+            <nav
+                class="shadow-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+            >
                 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <!-- Logo e collegamenti -->
@@ -68,7 +85,10 @@ const navLinks = [
                                         class="flex items-center text-sm font-medium text-white hover:text-gray-300"
                                     >
                                         <img
-                                            v-if="page.props.jetstream.managesProfilePhotos"
+                                            v-if="
+                                                page.props.jetstream
+                                                    .managesProfilePhotos
+                                            "
                                             class="w-8 h-8 rounded-full shadow-md"
                                             :src="user.profile_photo_url"
                                             :alt="username"
@@ -91,24 +111,44 @@ const navLinks = [
                                     </button>
                                 </template>
                                 <template #content>
-                                    <DropdownLink :href="route('profile.show')">Profilo</DropdownLink>
-                                    <DropdownLink :href="route('favorites.index')">Film Preferiti</DropdownLink>
-                                    <DropdownLink :href="route('posts.create')">Crea Post</DropdownLink>
+                                    <DropdownLink :href="route('profile.show')"
+                                        >Profilo</DropdownLink
+                                    >
+                                    <DropdownLink
+                                        :href="route('favorites.index')"
+                                        >Film Preferiti</DropdownLink
+                                    >
+                                    <DropdownLink :href="route('posts.create')"
+                                        >Crea Post</DropdownLink
+                                    >
                                     <form @submit.prevent="logout">
-                                        <DropdownLink as="button">Log Out</DropdownLink>
+                                        <DropdownLink as="button"
+                                            >Log Out</DropdownLink
+                                        >
                                     </form>
                                 </template>
                             </Dropdown>
                             <div v-else>
-                                <NavLink :href="route('login')" class="hover:text-gray-300">Log in</NavLink>
-                                <NavLink :href="route('register')" class="ml-4 hover:text-gray-300">Register</NavLink>
+                                <NavLink
+                                    :href="route('login')"
+                                    class="hover:text-gray-300"
+                                    >Log in</NavLink
+                                >
+                                <NavLink
+                                    :href="route('register')"
+                                    class="ml-4 hover:text-gray-300"
+                                    >Register</NavLink
+                                >
                             </div>
                         </div>
 
                         <!-- Hamburger menu -->
                         <div class="sm:hidden">
                             <button
-                                @click="showingNavigationDropdown = !showingNavigationDropdown"
+                                @click="
+                                    showingNavigationDropdown =
+                                        !showingNavigationDropdown
+                                "
                                 class="p-2 text-white rounded-md hover:bg-gray-100 hover:text-gray-600"
                             >
                                 <svg
@@ -160,13 +200,15 @@ const navLinks = [
             </nav>
 
             <!-- Contenuto principale -->
-            <main class="py-6">
+            <main class="min-h-screen py-6">
                 <slot />
             </main>
 
             <!-- Footer -->
             <footer class="shadow bg-gradient-to-t from-gray-200 to-gray-100">
-                <div class="px-4 py-6 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
+                <div
+                    class="px-4 py-6 mx-auto text-center max-w-7xl sm:px-6 lg:px-8"
+                >
                     <p class="text-sm text-gray-600">
                         Powered by the
                         <a
@@ -177,7 +219,9 @@ const navLinks = [
                         </a>
                         API
                     </p>
-                    <p class="text-sm text-gray-600">&copy; {{ new Date().getFullYear() }} YourSite</p>
+                    <p class="text-sm text-gray-600">
+                        &copy; {{ new Date().getFullYear() }} YourSite
+                    </p>
                 </div>
             </footer>
         </div>

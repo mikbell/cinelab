@@ -28,36 +28,79 @@
                 <p class="text-lg text-gray-600">Nessun film trovato.</p>
             </div>
 
-            <!-- Paginazione -->
-            <MoviePagination
-                :page="page"
-                :totalPages="totalPages"
-                @page-change="onPageChange"
-            />
+            <!-- Bottone "Mostra Altro" -->
+            <div class="flex justify-center mt-6">
+                <SecondaryButton
+                    v-if="currentPage < totalPages && !loading"
+                    @click="loadMore"
+                >
+                    Mostra Altro
+                </SecondaryButton>
+                <p v-else-if="loading" class="text-sm text-gray-600">
+                    Caricamento in corso...
+                </p>
+                <p v-else class="text-sm text-gray-600">
+                    Non ci sono più risultati da mostrare.
+                </p>
+            </div>
         </Container>
     </AppLayout>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import axios from "axios";
 import MovieCard from "@/Components/MovieCard.vue";
-import MoviePagination from "@/Components/MoviePagination.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import MovieSearchForm from "@/Components/MovieSearchForm.vue";
 import Container from "@/Components/Container.vue";
+import MovieSearchForm from "@/Components/MovieSearchForm.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
+// Props o dati iniziali
 const props = defineProps({
-    movies: Array,
-    totalResults: Number,
-    page: Number,
+    initialMovies: {
+        type: Array,
+        default: () => [],
+    },
+    totalResults: {
+        type: Number,
+        default: 0,
+    },
+    initialPage: {
+        type: Number,
+        default: 1,
+    },
 });
 
-const totalPages = Math.ceil(props.totalResults / 32);
+const movies = ref([...props.initialMovies]);
+const currentPage = ref(props.initialPage);
+const totalPages = ref(Math.min(Math.ceil(props.totalResults / 32), 100)); // Limita a 100 pagine
+const loading = ref(false);
 
-const onPageChange = (newPage) => {
-    const targetPage = parseInt(newPage, 10); // Assicura che sia un numero
+// Funzione per caricare più film
+const loadMore = async () => {
+    if (loading.value || currentPage.value >= totalPages) return;
 
-    console.log("Navigazione alla pagina:", targetPage); // Debug
-    const url = route("movies.index", { page: targetPage });
-    window.location.href = url; // Naviga alla nuova pagina
+    loading.value = true;
+
+    try {
+        const response = await axios.get(route("movies.index"), {
+            params: { page: currentPage.value + 1 },
+            headers: {
+                Accept: "application/json", // Assicura che venga restituita una risposta JSON
+            },
+        });
+
+        if (response.data?.movies) {
+            movies.value = [...movies.value, ...response.data.movies];
+            currentPage.value += 1;
+        } else {
+            console.error("Risposta non valida:", response.data);
+        }
+    } catch (error) {
+        console.error("Errore durante la richiesta:", error);
+    } finally {
+        loading.value = false;
+    }
 };
 </script>

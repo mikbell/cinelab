@@ -27,7 +27,7 @@ class TmdbService
     private function fetchFromTmdb(string $endpoint, array $params = [], string $cacheKey = null)
     {
         $cacheKey ??= md5($endpoint . serialize($params));
-        
+
         return Cache::remember($cacheKey, 3600, function () use ($endpoint, $params) {
             $response = Http::get("{$this->baseUrl}{$endpoint}", array_merge($params, [
                 'api_key' => $this->apiKey,
@@ -49,8 +49,13 @@ class TmdbService
 
     public function getPopularMovies($page = 1)
     {
-        return $this->fetchFromTmdb('/discover/movie', ['page' => $page], "popular_movies_page_{$page}");
+        $response = $this->fetchFromTmdb('/discover/movie', ['page' => $page], "popular_movies_page_{$page}");
+
+        Log::info('TMDb Total Results:', ['total_results' => $response['total_results'] ?? 0]);
+
+        return $response;
     }
+
 
     public function getTopRatedMovies($page = 1)
     {
@@ -82,4 +87,32 @@ class TmdbService
     {
         return $this->fetchFromTmdb("/movie/{$movieId}");
     }
+
+    public function getFilteredMovies($page = 1, $filters = [])
+    {
+        $defaultFilters = [
+            'sort_by' => 'popularity.desc',
+            'include_adult' => false,
+            'include_video' => false,
+            'page' => $page,
+        ];
+
+        return $this->fetchFromTmdb('/discover/movie', array_merge($defaultFilters, $filters), "filtered_movies_page_{$page}");
+    }
+
+    public function getMultiplePagesMovies($startPage = 1, $endPage = 3)
+    {
+        $movies = [];
+
+        for ($page = $startPage; $page <= $endPage; $page++) {
+            $response = $this->getPopularMovies($page);
+            $movies = array_merge($movies, $response['results']);
+        }
+
+        return [
+            'results' => $movies,
+            'total_results' => count($movies),
+        ];
+    }
+
 }

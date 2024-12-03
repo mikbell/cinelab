@@ -14,7 +14,6 @@ const props = defineProps({
     href: {
         type: String,
         default: "",
-        required: (props) => props.as === "link", // Obbligatorio se `as` è "link"
     },
     classes: {
         type: String,

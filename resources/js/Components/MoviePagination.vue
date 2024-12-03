@@ -1,73 +1,75 @@
 <template>
-    <div class="flex justify-center mt-6 space-x-2">
-        <!-- Pulsante Precedente -->
-        <button
-            :disabled="props.page <= 1"
-            @click="emitPageChange(props.page - 1)"
-            class="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-300 disabled:opacity-50"
-        >
-            Precedente
-        </button>
+    <div>
+        <!-- Risultati -->
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <MovieCard
+                v-for="movie in movies"
+                :key="movie.id"
+                :movie="movie"
+            />
+        </div>
 
-        <!-- Numeri di Pagina -->
-        <button
-            v-for="p in pages"
-            :key="p"
-            @click="emitPageChange(p)"
-            :class="[
-                'px-3 py-2 rounded-md',
-                p === props.page
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 hover:bg-gray-300'
-            ]"
-        >
-            {{ p }}
-        </button>
-
-        <!-- Pulsante Successivo -->
-        <button
-            :disabled="props.page >= props.totalPages"
-            @click="emitPageChange(props.page + 1)"
-            class="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-300 disabled:opacity-50"
-        >
-            Successivo
-        </button>
+        <!-- Pulsante "Mostra Altro" -->
+        <div class="flex justify-center mt-6">
+            <PrimaryButton
+                v-if="page < totalPages"
+                @click="loadMore"
+                :disabled="loading"
+            >
+                {{ loading ? "Caricamento in corso..." : "Mostra Altro" }}
+            </PrimaryButton>
+            <p v-else class="text-sm text-gray-600">
+                Non ci sono più risultati da mostrare.
+            </p>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { ref } from "vue";
+import axios from "axios";
+import MovieCard from "@/Components/MovieCard.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
-    page: {
-        type: Number,
-        required: true,
+    initialMovies: {
+        type: Array,
+        default: () => [],
     },
-    totalPages: {
+    totalResults: {
         type: Number,
-        required: true,
+        default: 0,
+    },
+    initialPage: {
+        type: Number,
+        default: 1,
     },
 });
 
-const emit = defineEmits(["page-change"]);
+const movies = ref([...props.initialMovies]); // Stato locale per i film
+const page = ref(props.initialPage); // Pagina corrente
+const totalPages = Math.ceil(props.totalResults / 20); // Totale pagine
+const loading = ref(false); // Stato di caricamento
 
-// Calcola l'intervallo di pagine da mostrare
-const pages = computed(() => {
-    const range = [];
-    const start = Math.max(1, props.page - 2); // Mostra fino a 2 pagine prima
-    const end = Math.min(props.totalPages, props.page + 2); // Mostra fino a 2 pagine dopo
+const loadMore = async () => {
+    if (loading.value || page.value >= totalPages) return;
 
-    for (let i = start; i <= end; i++) {
-        range.push(i);
-    }
+    loading.value = true;
 
-    return range;
-});
+    try {
+        const nextPage = page.value + 1; // Prossima pagina
+        const response = await axios.get(route("movies.index"), {
+            params: { page: nextPage },
+        });
 
-const emitPageChange = (newPage) => {
-    const targetPage = parseInt(newPage, 10); // Assicura che sia un numero
-    if (targetPage > 0 && targetPage <= props.totalPages) {
-        emit("page-change", targetPage); // Emette l'evento al genitore
+        if (response.data?.movies) {
+            movies.value = [...movies.value, ...response.data.movies]; // Aggiungi nuovi risultati
+            page.value = nextPage;
+        }
+    } catch (error) {
+        console.error("Errore durante il caricamento dei film:", error);
+    } finally {
+        loading.value = false;
     }
 };
 </script>
