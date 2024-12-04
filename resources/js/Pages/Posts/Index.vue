@@ -1,70 +1,54 @@
 <template>
     <AppLayout title="Posts">
-        <!-- Header -->
-        <template #header>
-            <h2
-                class="text-3xl font-bold text-center text-gray-900"
-                v-text="selectedTopic ? selectedTopic.name : 'Tutti i post'"
-            ></h2>
-
-            <p
-                v-if="selectedTopic"
-                class="mt-1 text-sm text-center text-gray-600"
-            >
-                {{ selectedTopic.description }}
-            </p>
-        </template>
-
         <!-- Lista dei post -->
         <Container>
-            <div class="py-6">
-                <form @submit.prevent="search" class="">
-                    <div>
-                        <div class="flex gap-2 mb-4">
-                            <TextInput
-                                v-model="searchForm.query"
-                                class="w-full"
-                                id="query"
-                                name="query"
-                                placeholder="Cerca tra i post..."
-                            />
-                            <PrimaryButton type="submit">Cerca</PrimaryButton>
-                            <DangerButton
-                                v-if="searchForm.query"
-                                @click="clearSearch"
-                                >Cancella</DangerButton
-                            >
-                        </div>
+            <PageHeading> Forum </PageHeading>
+            <form @submit.prevent="search" class="">
+                <div>
+                    <div class="flex gap-2 mb-4">
+                        <TextInput
+                            v-model="searchForm.query"
+                            class="w-full"
+                            id="query"
+                            name="query"
+                            placeholder="Cerca tra i post..."
+                        />
+                        <PrimaryButton type="submit">Cerca</PrimaryButton>
+                        <DangerButton
+                            v-if="searchForm.query"
+                            @click="clearSearch"
+                            >Cancella</DangerButton
+                        >
                     </div>
-                </form>
+                </div>
+            </form>
 
-                <menu class="flex pb-4 space-x-1 overflow-auto">
-                    <li>
-                        <Pill
-                            :href="
-                                route('posts.index', {
-                                    query: searchForm.query,
-                                })
-                            "
-                            :filled="!selectedTopic"
-                            >Tutti i post
-                        </Pill>
-                    </li>
+            <menu class="flex pb-4 space-x-1 overflow-auto">
+                <li>
+                    <Pill
+                        :href="
+                            route('posts.index', {
+                                query: searchForm.query,
+                            })
+                        "
+                        :filled="!selectedTopic"
+                        >Tutti i post
+                    </Pill>
+                </li>
 
-                    <li v-for="topic in topics" :key="topic.id">
-                        <Pill
-                            :href="
-                                route('posts.index', {
-                                    topic: topic.slug,
-                                    query: searchForm.query,
-                                })
-                            "
-                            :filled="topic.id === selectedTopic?.id"
-                            >{{ topic.name }}
-                        </Pill>
-                    </li>
-                </menu>
-            </div>
+                <li v-for="topic in topics" :key="topic.id">
+                    <Pill
+                        :href="
+                            route('posts.index', {
+                                topic: topic.slug,
+                                query: searchForm.query,
+                            })
+                        "
+                        :filled="topic.id === selectedTopic?.id"
+                        >{{ topic.name }}
+                    </Pill>
+                </li>
+            </menu>
 
             <div v-if="posts.data.length">
                 <ul class="space-y-6">
@@ -117,6 +101,7 @@ import { relativeDate } from "@/Utilities/date";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import PageHeading from "@/Components/PageHeading.vue";
 
 const props = defineProps({
     posts: Object,

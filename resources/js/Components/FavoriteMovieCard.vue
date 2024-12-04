@@ -1,7 +1,5 @@
 <template>
-    <Link
-        class="relative flex flex-col transition duration-300 bg-white rounded-lg shadow hover:shadow-lg hover:scale-105"
-    >
+    <div class="relative flex flex-col bg-white rounded-lg shadow">
         <img
             :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
             alt="Poster del film"
@@ -11,12 +9,16 @@
             <h4 class="text-lg font-bold text-gray-800 truncate">
                 {{ movie.title }}
             </h4>
+            <DangerButton @click="$emit('remove-favorite')">
+                Rimuovi dai Preferiti
+            </DangerButton>
         </div>
-    </Link>
+    </div>
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import DangerButton from "./DangerButton.vue";
+
 defineProps({
     movie: {
         type: Object,

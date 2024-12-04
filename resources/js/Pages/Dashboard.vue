@@ -1,12 +1,9 @@
 <template>
     <AppLayout title="Dashboard">
         <!-- Header -->
-        <template #header>
-            <h2 class="text-3xl font-bold text-center text-gray-900 ">
-                Cinelab
-            </h2>
-        </template>
+
         <Container>
+            <PageHeading> Dashboard </PageHeading>
             <div class="py-12 space-y-12">
                 <!-- Film popolari -->
                 <Section title="Film Popolari">
@@ -37,6 +34,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Section from "@/Components/Section.vue";
 import MovieCarousel from "@/Components/MovieCarousel.vue";
 import Container from "@/Components/Container.vue";
+import PageHeading from "@/Components/PageHeading.vue";
 
 const props = defineProps({
     popularMovies: Array,

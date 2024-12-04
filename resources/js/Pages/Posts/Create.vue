@@ -1,11 +1,8 @@
 <template>
     <AppLayout title="Crea Post">
         <!-- Header -->
-        <template #header>
-            <h2 class="text-3xl font-bold text-center text-gray-900">
-                Crea Post
-            </h2>
-        </template>
+        <PageHeading> Crea Post </PageHeading>
+
 
         <Container>
             <form @submit.prevent="createPost">
@@ -93,6 +90,7 @@ import { useForm } from "@inertiajs/vue3";
 import MarkdownEditor from "@/Components/MarkdownEditor.vue";
 import { isInProduction } from "@/Utilities/environment.js";
 import axios from "axios";
+import PageHeading from "@/Components/PageHeading.vue";
 
 const props = defineProps({
     topics: {

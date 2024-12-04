@@ -1,12 +1,15 @@
 <template>
-    <div class="flex gap-2 py-6 mb-6">
+    <div class="flex gap-2 mb-6">
+        <!-- Campo di input per la ricerca -->
         <TextInput
             v-model="query"
             @keyup.enter="searchMovies"
             type="text"
             placeholder="Inserisci il nome del film..."
-            class="flex-1 "
+            class="flex-1"
         />
+
+        <!-- Pulsante per cercare -->
         <PrimaryButton @click="searchMovies" :disabled="loading">
             <span v-if="!loading">Cerca</span>
             <span v-else>Caricamento...</span>
@@ -15,22 +18,37 @@
 </template>
 
 <script setup>
-
 import { ref } from "vue";
+import axios from "axios";
 import PrimaryButton from "./PrimaryButton.vue";
 import TextInput from "./TextInput.vue";
 
 const props = defineProps({
-    query: String,
-    page: Number,
+    query: String, // Valore iniziale della query
+    onSearch: Function, // Callback per aggiornare i risultati
 });
 
-const query = ref(props.query);
+// Stato locale
+const query = ref(props.query || ""); // Query di ricerca
+const loading = ref(false); // Stato di caricamento
 
-const searchMovies = () => {
-    if (!query.value.trim()) return;
+// Funzione per eseguire la ricerca
+const searchMovies = async () => {
+    if (!query.value.trim() || loading.value) return; // Evita richieste multiple
 
-    const url = route("movies.search", { query: query.value });
-    window.location.href = url; // Cambia pagina per ricaricare i dati
+    loading.value = true;
+
+    try {
+        const response = await axios.get(route("movies.index"), {
+            params: { query: query.value, page: 1 },
+        });
+
+        // Chiamata alla funzione di callback per aggiornare i risultati
+        props.onSearch(response.data.movies, response.data.total_results);
+    } catch (error) {
+        console.error("Errore durante la ricerca:", error);
+    } finally {
+        loading.value = false;
+    }
 };
 </script>

@@ -7,13 +7,32 @@
         </template>
 
         <Container>
-            <!-- Bottone di ricerca -->
-            <MovieSearchForm />
+            <PageHeading> Film Popolari </PageHeading>
+
+            <!-- Form di ricerca -->
+            <MovieSearchForm :query="query" :onSearch="updateMovies" />
+            <!-- Dropdown per i generi -->
+            <div class="mb-4">
+                <select
+                    v-model="selectedGenre"
+                    @change="applyFilters"
+                    class="border-gray-300 rounded-md shadow-sm"
+                >
+                    <option value="">Tutti i generi</option>
+                    <option
+                        v-for="genre in genres"
+                        :key="genre.id"
+                        :value="genre.id"
+                    >
+                        {{ genre.name }}
+                    </option>
+                </select>
+            </div>
 
             <!-- Griglia dei film -->
             <div
                 v-if="movies.length"
-                class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
             >
                 <MovieCard
                     v-for="movie in movies"
@@ -55,50 +74,78 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Container from "@/Components/Container.vue";
 import MovieSearchForm from "@/Components/MovieSearchForm.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import PageHeading from "@/Components/PageHeading.vue";
 
-// Props o dati iniziali
 const props = defineProps({
-    initialMovies: {
-        type: Array,
-        default: () => [],
-    },
-    totalResults: {
-        type: Number,
-        default: 0,
-    },
-    initialPage: {
-        type: Number,
-        default: 1,
-    },
+    initialMovies: Array,
+    totalResults: Number,
+    initialPage: Number,
+    genres: Array,
 });
 
 const movies = ref([...props.initialMovies]);
 const currentPage = ref(props.initialPage);
-const totalPages = ref(Math.min(Math.ceil(props.totalResults / 32), 100)); // Limita a 100 pagine
+const totalPages = ref(Math.min(Math.ceil(props.totalResults / 32), 100));
+const selectedGenre = ref("");
+const query = ref("");
 const loading = ref(false);
 
-// Funzione per caricare più film
+
+// Funzione per aggiornare i risultati dei film
+const updateMovies = (newMovies, totalResults) => {
+    movies.value = newMovies;
+    console.log("Totale risultati:", totalResults);
+};
+
+// Funzione per caricare i risultati combinati
+const applyFilters = async () => {
+    loading.value = true;
+
+    try {
+        const response = await axios.get(route("movies.index"), {
+            params: {
+                genre: selectedGenre.value,
+                query: query.value,
+                page: 1,
+            },
+        });
+
+        if (response.data?.movies) {
+            movies.value = response.data.movies;
+            totalPages.value = Math.min(
+                Math.ceil(response.data.total_results / 32),
+                100
+            );
+            currentPage.value = 1;
+        }
+    } catch (error) {
+        console.error("Errore durante l'applicazione dei filtri:", error);
+    } finally {
+        loading.value = false;
+    }
+};
+
+// Funzione per caricare più risultati (paginazione)
 const loadMore = async () => {
-    if (loading.value || currentPage.value >= totalPages) return;
+    if (loading.value || currentPage.value >= totalPages.value) return;
 
     loading.value = true;
 
     try {
         const response = await axios.get(route("movies.index"), {
-            params: { page: currentPage.value + 1 },
-            headers: {
-                Accept: "application/json", // Assicura che venga restituita una risposta JSON
+            params: {
+                genre: selectedGenre.value,
+                query: query.value,
+                page: currentPage.value + 1,
             },
         });
 
         if (response.data?.movies) {
             movies.value = [...movies.value, ...response.data.movies];
             currentPage.value += 1;
-        } else {
-            console.error("Risposta non valida:", response.data);
         }
     } catch (error) {
-        console.error("Errore durante la richiesta:", error);
+        console.error("Errore durante il caricamento dei film:", error);
     } finally {
         loading.value = false;
     }

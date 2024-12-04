@@ -15,20 +15,7 @@ class MovieController extends Controller
         $this->tmdbService = $tmdbService;
     }
 
-    public function search(Request $request)
-    {
-        $query = $request->query('query', ''); // Query di ricerca
-        $page = $request->query('page', 1); // Pagina corrente
 
-        $movies = $this->tmdbService->searchMovies($query, $page);
-
-        return inertia('Movies/Search', [
-            'movies' => $movies['results'] ?? [],
-            'totalResults' => $movies['total_results'] ?? 0,
-            'query' => $query,
-            'page' => $page,
-        ]);
-    }
 
     public function dashboard(Request $request)
     {
@@ -59,23 +46,29 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         $page = (int) $request->query('page', 1);
-        $movies = $this->tmdbService->getPopularMovies($page);
-    
-        // Se la richiesta è AJAX, restituisci JSON
-        if ($request->expectsJson()) {
-            return response()->json([
+        $genre = $request->query('genre');
+        $query = $request->query('query');
+
+        if ($query) {
+            $movies = $this->tmdbService->searchMovies($query, $page);
+        } elseif ($genre) {
+            $movies = $this->tmdbService->getMoviesByGenre($genre, $page);
+        } else {
+            $movies = $this->tmdbService->getPopularMovies($page);
+        }
+
+        return $request->expectsJson()
+            ? response()->json([
                 'movies' => $movies['results'] ?? [],
                 'total_results' => $movies['total_results'] ?? 0,
                 'page' => $page,
+            ])
+            : inertia('Movies/Index', [
+                'initialMovies' => $movies['results'] ?? [],
+                'totalResults' => $movies['total_results'] ?? 0,
+                'initialPage' => $page,
+                'genres' => $this->tmdbService->getGenres(),
             ]);
-        }
-    
-        // Per richieste HTML, restituisci la vista Inertia
-        return inertia('Movies/Index', [
-            'initialMovies' => $movies['results'] ?? [],
-            'totalResults' => $movies['total_results'] ?? 0,
-            'initialPage' => $page,
-        ]);
     }
 
     public function show($id)

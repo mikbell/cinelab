@@ -9,24 +9,30 @@ class FavoriteController extends Controller
     public function index(Request $request)
     {
         return inertia('Favorites/Index', [
-            'favorites' => $request->user()->favorites()->get(),
+            'favorites' => $request->user()->favorites()->get()->map(function ($favorite) {
+                return [
+                    'id' => $favorite->movie_id,
+                    'title' => $favorite->title,
+                    'poster_path' => $favorite->poster_path,
+                ];
+            }),
         ]);
     }
-    
-    
+
+
     public function store(Request $request, $movieId)
     {
         $user = $request->user();
-    
+
         $user->favorites()->create([
             'movie_id' => $movieId,
             'title' => $request->input('title'),
             'poster_path' => $request->input('poster_path'),
         ]);
-    
+
         return response()->json(['message' => 'Aggiunto ai preferiti']);
     }
-    
+
 
     public function destroy(Request $request, $movieId)
     {

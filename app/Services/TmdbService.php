@@ -69,11 +69,14 @@ class TmdbService
 
     public function getMoviesByGenre($genreId, $page = 1)
     {
+        Log::info("Chiamata API per genere: {$genreId}, pagina: {$page}");
+
         return $this->fetchFromTmdb('/discover/movie', [
             'with_genres' => $genreId,
             'page' => $page,
         ], "genre_{$genreId}_movies_page_{$page}");
     }
+
 
     public function searchMovies(string $query, int $page = 1)
     {
@@ -114,5 +117,18 @@ class TmdbService
             'total_results' => count($movies),
         ];
     }
+
+    public function getGenres()
+    {
+        return Cache::remember('movie_genres', 86400, function () {
+            $response = Http::get("{$this->baseUrl}/genre/movie/list", [
+                'api_key' => $this->apiKey,
+                'language' => 'it-IT',
+            ]);
+
+            return $response->json()['genres'] ?? [];
+        });
+    }
+
 
 }

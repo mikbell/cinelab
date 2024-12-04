@@ -1,13 +1,13 @@
 <template>
-    <div class="relative py-6">
+    <div class="relative">
         <!-- Swiper -->
         <Swiper
             :space-between="16"
-            :slides-per-view="1"
+            :slides-per-view="2"
             :breakpoints="{
-                640: { slidesPerView: 2, spaceBetween: 16 },
-                768: { slidesPerView: 3, spaceBetween: 24 },
-                1024: { slidesPerView: 4, spaceBetween: 32 },
+                640: { slidesPerView: 4, spaceBetween: 16 },
+                768: { slidesPerView: 5, spaceBetween: 24 },
+                1024: { slidesPerView: 6, spaceBetween: 32 },
             }"
             navigation
             pagination

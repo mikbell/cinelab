@@ -212,6 +212,7 @@ const navLinks = [
                     <p class="text-sm text-gray-600">
                         Powered by the
                         <a
+                            target="_blank"
                             href="https://www.themoviedb.org/"
                             class="font-medium text-blue-600 hover:underline"
                         >

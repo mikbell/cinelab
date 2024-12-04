@@ -5,13 +5,9 @@
 
     <AppLayout :title="post.title">
         <!-- Header -->
-        <template #header>
-            <h2 class="text-3xl font-bold text-center text-gray-900">
-                {{ post.title }}
-            </h2>
-        </template>
 
         <Container>
+            <PageHeading> {{ post.title }} </PageHeading>
             <div class="mb-4">
                 <Pill :href="route('posts.index', post.topic.slug)">
                     {{ post.topic.name }}
@@ -93,7 +89,11 @@
                 </form>
 
                 <p v-else class="mt-6 text-sm italic text-gray-500">
-                    Devi <Link :href="route('login')" class="text-black underline">accedere</Link> per scrivere un commento.
+                    Devi
+                    <Link :href="route('login')" class="text-black underline"
+                        >accedere</Link
+                    >
+                    per scrivere un commento.
                 </p>
 
                 <!-- Lista dei commenti -->
@@ -139,6 +139,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import MarkdownEditor from "@/Components/MarkdownEditor.vue";
 import InputError from "@/Components/InputError.vue";
 import { useConfirm } from "@/Utilities/Composables/useConfirm";
+import PageHeading from "@/Components/PageHeading.vue";
 
 const props = defineProps({
     post: {

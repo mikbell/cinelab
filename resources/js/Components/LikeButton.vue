@@ -1,5 +1,10 @@
 <template>
-    <Link :href="href" :method="method" preserve-scroll v-if="$page.props.auth.user">
+    <Link
+        v-if="$page.props.auth.user"
+        :href="href"
+        :method="method"
+        preserve-scroll
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

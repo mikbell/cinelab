@@ -36,7 +36,6 @@ Route::get('/posts/{topic?}', [PostController::class, 'index'])->name('posts.ind
 Route::get('/posts/{post}/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
-Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
 
 
