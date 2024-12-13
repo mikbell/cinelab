@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-2 mb-6">
+    <div class="flex gap-2 mb-2">
         <!-- Campo di input per la ricerca -->
         <TextInput
             v-model="query"

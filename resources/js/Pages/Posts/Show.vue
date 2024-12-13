@@ -8,10 +8,17 @@
 
         <Container>
             <PageHeading> {{ post.title }} </PageHeading>
-            <div class="mb-4">
-                <Pill :href="route('posts.index', post.topic.slug)">
-                    {{ post.topic.name }}
-                </Pill>
+
+            <div class="flex justify-between">
+                <div class="mb-4">
+                    <Pill :href="route('posts.index', post.topic.slug)">
+                        {{ post.topic.name }}
+                    </Pill>
+                </div>
+
+                <PrimaryButton v-if="post.can.update" as="link" :href="post.routes.edit" class="mb-4">
+                    Modifica post
+                </PrimaryButton>
             </div>
 
             <div class="flex items-center mt-4 space-x-2">
@@ -127,6 +134,7 @@
 import { useForm, router, Head, Link } from "@inertiajs/vue3";
 import { computed, ref } from "vue";
 import { relativeDate } from "@/Utilities/date";
+import { useConfirm } from "@/Utilities/Composables/useConfirm";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Container from "@/Components/Container.vue";
 import LikeButton from "@/Components/LikeButton.vue";
@@ -138,7 +146,6 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import MarkdownEditor from "@/Components/MarkdownEditor.vue";
 import InputError from "@/Components/InputError.vue";
-import { useConfirm } from "@/Utilities/Composables/useConfirm";
 import PageHeading from "@/Components/PageHeading.vue";
 
 const props = defineProps({

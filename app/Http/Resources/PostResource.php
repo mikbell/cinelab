@@ -38,10 +38,13 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'routes' => [
-                'show' => $this->showRoute()
+                'show' => $this->showRoute(),
+                'edit' => $this->editRoute(),
             ],
             'can' => [
                 'like' => $this->when($this->withLikePermission, fn() => $request->user()?->can('create', [Like::class, $this->resource])),
+                'update' => $request->user()?->can('update', $this->resource),
+                'delete' => $request->user()?->can('delete', $this->resource),
             ]
         ];
     }

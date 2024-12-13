@@ -115,7 +115,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+        
+        return inertia(
+            'Posts/Edit',
+            [
+                'post' => PostResource::make($post),
+                'topics' => fn() => TopicResource::collection(Topic::all())
+            ]
+        );
     }
 
     /**
@@ -123,8 +131,23 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        if ($validated['title'] !== $post->title) {
+            $validated['slug'] = Str::slug($validated['title']);
+        }
+
+        $post->update($validated);
+
+        return redirect($post->showRoute())
+            ->with('success', 'Post aggiornato con successo!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -134,7 +157,7 @@ class PostController extends Controller
         $this->authorize('delete', $post); // Assicurati di avere una policy definita
         $post->delete();
 
-        return redirect()->route('posts.index')->banner('success', 'Post eliminato con successo.');
+        return redirect(route('posts.index'))->banner('success', 'Post eliminato con successo.');
     }
 
 }

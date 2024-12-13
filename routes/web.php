@@ -19,8 +19,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::resource('posts', PostController::class)->only('store', 'create', 'update', 'destroy')->middleware('can:create,App\Models\Post');
+    Route::resource('posts', PostController::class)->only('store', 'create', 'update')->middleware('can:create,App\Models\Post');
     Route::resource('posts.comments', CommentController::class)->shallow()->only('store', 'destroy', 'update');
+
+    Route::get('/posts/{post}/{slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
     Route::post('/likes/{type}/{id}', [LikeController::class, 'store'])->name('likes.store');
     Route::delete('/likes/{type}/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');

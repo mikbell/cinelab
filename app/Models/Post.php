@@ -25,6 +25,7 @@ class Post extends Model
         'user_id',
         'topic_id',
         'title',
+        'slug',
         'content',
         'html',
     ];
@@ -34,6 +35,17 @@ class Post extends Model
     const CONTENT_MIN_LENGTH = 100;
     const CONTENT_MAX_LENGTH = 10_000;
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($post) {
+            if (empty($post->slug)) {
+                $post->slug = Str::slug($post->title);
+            }
+        });
+    }
 
     public function user(): BelongsTo
     {
@@ -63,9 +75,19 @@ class Post extends Model
     public function showRoute(array $parameters = [])
     {
         return route('posts.show', [
-            $this,
-            Str::slug($this->title),
-            ...$parameters
+            'post' => $this->id, // Assicurati che `$this->id` o `$this->slug` sia corretto
+            'slug' => Str::slug($this->title), // Assicurati che il titolo sia presente
+            ...$parameters,
+        ]);
+    }
+
+
+    public function editRoute(array $parameters = [])
+    {
+        return route('posts.edit', [
+            'post' => $this->id, // Specifica esplicitamente l'id del post
+            'slug' => Str::slug($this->title), // Include lo slug del titolo
+            ...$parameters, // Eventuali parametri aggiuntivi
         ]);
     }
 }

@@ -12,7 +12,7 @@
             <!-- Form di ricerca -->
             <MovieSearchForm :query="query" :onSearch="updateMovies" />
             <!-- Dropdown per i generi -->
-            <div class="mb-4">
+            <div class="mb-6">
                 <select
                     v-model="selectedGenre"
                     @change="applyFilters"
@@ -90,7 +90,6 @@ const selectedGenre = ref("");
 const query = ref("");
 const loading = ref(false);
 
-
 // Funzione per aggiornare i risultati dei film
 const updateMovies = (newMovies, totalResults) => {
     movies.value = newMovies;
@@ -104,20 +103,15 @@ const applyFilters = async () => {
     try {
         const response = await axios.get(route("movies.index"), {
             params: {
-                genre: selectedGenre.value,
                 query: query.value,
+                genre: selectedGenre.value, // Aggiunto il parametro "genre"
                 page: 1,
             },
         });
 
-        if (response.data?.movies) {
-            movies.value = response.data.movies;
-            totalPages.value = Math.min(
-                Math.ceil(response.data.total_results / 32),
-                100
-            );
-            currentPage.value = 1;
-        }
+        movies.value = response.data.movies;
+        currentPage.value = 1;
+        totalPages.value = Math.ceil(response.data.total_results / 32);
     } catch (error) {
         console.error("Errore durante l'applicazione dei filtri:", error);
     } finally {

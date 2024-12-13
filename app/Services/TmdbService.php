@@ -69,12 +69,10 @@ class TmdbService
 
     public function getMoviesByGenre($genreId, $page = 1)
     {
-        Log::info("Chiamata API per genere: {$genreId}, pagina: {$page}");
-
         return $this->fetchFromTmdb('/discover/movie', [
             'with_genres' => $genreId,
             'page' => $page,
-        ], "genre_{$genreId}_movies_page_{$page}");
+        ], "movies_by_genre_{$genreId}_page_{$page}");
     }
 
 
@@ -99,9 +97,10 @@ class TmdbService
             'include_video' => false,
             'page' => $page,
         ];
-
+    
         return $this->fetchFromTmdb('/discover/movie', array_merge($defaultFilters, $filters), "filtered_movies_page_{$page}");
     }
+    
 
     public function getMultiplePagesMovies($startPage = 1, $endPage = 3)
     {
@@ -129,6 +128,7 @@ class TmdbService
             return $response->json()['genres'] ?? [];
         });
     }
+
 
 
 }

@@ -3,8 +3,8 @@
         <!-- Header -->
 
         <Container>
-            <PageHeading> Crea Post </PageHeading>
-            <form @submit.prevent="createPost">
+            <PageHeading> Edita Post: {{ post.title }} </PageHeading>
+            <form @submit.prevent="updatePost">
                 <!-- Input per il titolo -->
                 <div>
                     <InputLabel for="title" value="Title" class="sr-only" />
@@ -44,27 +44,14 @@
                 <!-- Editor Markdown per il contenuto -->
                 <div class="mt-6">
                     <InputLabel for="content" value="Content" class="sr-only" />
-                    <MarkdownEditor v-model="form.content">
-                        <!-- Toolbar personalizzata -->
-                        <template #toolbar="{ editor }">
-                            <li v-if="!isInProduction()">
-                                <button
-                                    @click="autofill"
-                                    type="button"
-                                    class="px-3 py-2 rounded-md hover:bg-gray-100"
-                                    title="Autocompleta"
-                                >
-                                    <i class="ri-article-line"></i>
-                                    <span class="ml-1 text-sm">Autofill</span>
-                                </button>
-                            </li>
-                        </template>
-                    </MarkdownEditor>
+                    <MarkdownEditor v-model="form.content"> </MarkdownEditor>
                     <InputError class="mt-2" :message="form.errors.content" />
                 </div>
 
                 <!-- Pulsante di invio -->
                 <div class="flex items-center justify-end mt-6">
+                    <DangerButton @click="deletePost"> Elimina </DangerButton>
+
                     <PrimaryButton
                         type="submit"
                         :class="{ 'opacity-50': form.processing }"
@@ -85,13 +72,16 @@ import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import { useForm } from "@inertiajs/vue3";
 import MarkdownEditor from "@/Components/MarkdownEditor.vue";
-import { isInProduction } from "@/Utilities/environment.js";
-import axios from "axios";
 import PageHeading from "@/Components/PageHeading.vue";
+import { useConfirm } from "@/Utilities/Composables/useConfirm";
+
+const { confirmation } = useConfirm();
 
 const props = defineProps({
+    post: Object,
     topics: {
         type: Array,
         default: () => [],
@@ -100,26 +90,22 @@ const props = defineProps({
 
 // Stato del form
 const form = useForm({
-    title: "",
-    topic_id: props.topics.length ? props.topics[0].id : "", // Seleziona il primo topic come default
-    content: "",
+    title: props.post.title,
+    topic_id: props.post.topic_id,
+    content: props.post.content,
 });
 
-// Funzione per creare il post
-const createPost = () => {
-    form.post(route("posts.store"));
+// Funzione per eliminare il post
+const deletePost = async () => {
+    if (!(await confirmation("Vuoi eliminare il post?"))) {
+        return;
+    }
+
+    form.delete(route("posts.destroy", props.post.id));
 };
 
-// Funzione di autocompletamento (solo in ambiente non di produzione)
-const autofill = async () => {
-    if (isInProduction()) return;
-
-    try {
-        const response = await axios.get("/local/post-content");
-        form.title = response.data.title;
-        form.content = response.data.content;
-    } catch (error) {
-        console.error("Errore durante l'autofill:", error);
-    }
+// Funzione per modificare il post
+const updatePost = () => {
+    form.patch(route("posts.update", props.post.id));
 };
 </script>

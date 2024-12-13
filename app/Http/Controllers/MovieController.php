@@ -50,10 +50,13 @@ class MovieController extends Controller
         $query = $request->query('query');
 
         if ($query) {
+            // Cerca i film in base alla query
             $movies = $this->tmdbService->searchMovies($query, $page);
         } elseif ($genre) {
+            // Filtra i film in base al genere
             $movies = $this->tmdbService->getMoviesByGenre($genre, $page);
         } else {
+            // Ottieni i film popolari
             $movies = $this->tmdbService->getPopularMovies($page);
         }
 
@@ -70,6 +73,7 @@ class MovieController extends Controller
                 'genres' => $this->tmdbService->getGenres(),
             ]);
     }
+
 
     public function show($id)
     {
