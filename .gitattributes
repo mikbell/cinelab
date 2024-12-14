@@ -8,5 +8,4 @@
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
 *.exe filter=lfs diff=lfs merge=lfs -text
-path/to/meilisearch.exe filter=lfs diff=lfs merge=lfs -text
 meilisearch.exe filter=lfs diff=lfs merge=lfs -text
