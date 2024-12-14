@@ -121,6 +121,7 @@
 
                 <!-- Paginazione -->
                 <Pagination
+                    v-if="comments.data.length"
                     :meta="comments.meta"
                     :only="['comments']"
                     class="mt-6"

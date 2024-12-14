@@ -49,7 +49,7 @@
                 </div>
 
                 <!-- Pulsante di invio -->
-                <div class="flex items-center justify-end mt-6">
+                <div class="flex items-center justify-end gap-2 mt-6">
                     <DangerButton @click="deletePost"> Elimina </DangerButton>
 
                     <PrimaryButton

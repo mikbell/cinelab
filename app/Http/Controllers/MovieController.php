@@ -30,17 +30,24 @@ class MovieController extends Controller
         // Film recenti
         $recentMovies = $this->tmdbService->getNowPlayingMovies($page);
 
-        // Film per genere (esempio: Azione)
-        $genreId = 28; // ID del genere Azione
-        $actionMovies = $this->tmdbService->getMoviesByGenre($genreId, $page);
+        // Film per generi
+        $genreIds = [
+            28 => 'actionMovies', // Azione
+            35 => 'comedyMovies', // Commedia
+            18 => 'dramaMovies',  // Dramma
+        ];
 
-        return inertia('Dashboard', [
+        $moviesByGenre = [];
+        foreach ($genreIds as $genreId => $key) {
+            $moviesByGenre[$key] = $this->tmdbService->getMoviesByGenre($genreId, $page)['results'] ?? [];
+        }
+
+        return inertia('Dashboard', array_merge([
             'popularMovies' => $popularMovies['results'] ?? [],
             'topRatedMovies' => $topRatedMovies['results'] ?? [],
             'recentMovies' => $recentMovies['results'] ?? [],
-            'actionMovies' => $actionMovies['results'] ?? [],
             'page' => $page,
-        ]);
+        ], $moviesByGenre));
     }
 
     public function index(Request $request)
