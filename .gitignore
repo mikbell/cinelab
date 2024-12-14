@@ -6,7 +6,6 @@
 /storage/*.key
 /storage/pail
 /vendor
-/meilisearch.exe
 .env
 .env.backup
 .env.production
