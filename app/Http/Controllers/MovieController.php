@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\TMDbService;
-use Illuminate\Support\Facades\Log;
 
 class MovieController extends Controller
 {
     protected $tmdbService;
 
-    public function __construct(TMDbService $tmdbService)
+    public function __construct(TmdbService $tmdbService)
     {
         $this->tmdbService = $tmdbService;
     }
