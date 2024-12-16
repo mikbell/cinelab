@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Services\TMDbService;
+use App\Services\TmdbService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -22,7 +22,7 @@ class FetchPopularMoviesJob implements ShouldQueue
         $this->maxMovies = $maxMovies;
     }
 
-    public function handle(TMDbService $tmdbService)
+    public function handle(TmdbService $tmdbService)
     {
         $movies = $tmdbService->getPopularMovies($this->maxPages, $this->maxMovies);
     }

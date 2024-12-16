@@ -1,11 +1,5 @@
 <template>
     <AppLayout title="Movies">
-        <template #header>
-            <h2 class="text-3xl font-bold text-center text-gray-900">
-                TMDb API - Film Popolari
-            </h2>
-        </template>
-
         <Container>
             <PageHeading> Film Popolari </PageHeading>
 
