@@ -24,6 +24,6 @@ class FetchPopularMoviesJob implements ShouldQueue
 
     public function handle(TmdbService $tmdbService)
     {
-        $movies = $tmdbService->getPopularMovies($this->maxPages, $this->maxMovies);
+        $movies = $tmdbService->getPopularMovies($this->maxPages);
     }
 }

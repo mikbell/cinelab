@@ -45,7 +45,7 @@
                 </span>
             </p>
             <article
-                class="prose max-w-none prose-gray"
+                class="prose break-all max-w-none prose-gray"
                 v-html="post.html"
             ></article>
 

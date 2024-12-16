@@ -143,7 +143,7 @@ const navLinks = [
                         </div>
 
                         <!-- Hamburger menu -->
-                        <div class="sm:hidden">
+                        <div class="flex items-center sm:hidden">
                             <button
                                 @click="
                                     showingNavigationDropdown =
@@ -195,6 +195,75 @@ const navLinks = [
                         >
                             {{ link.name }}
                         </ResponsiveNavLink>
+                    </div>
+
+                    <div v-if="user" class="pt-4 pb-3 border-t border-gray-200">
+                        <div class="flex items-center px-4">
+                            <div
+                                v-if="page.props.jetstream.managesProfilePhotos"
+                                class="flex-shrink-0 mr-3"
+                            >
+                                <img
+                                    class="w-10 h-10 rounded-full shadow-md"
+                                    :src="user.profile_photo_url"
+                                    :alt="username"
+                                />
+                            </div>
+
+                            <div>
+                                <div class="text-base font-medium text-white">
+                                    {{ username }}
+                                </div>
+                                <div class="text-sm font-medium text-white">
+                                    {{ user.email }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 space-y-1">
+                            <ResponsiveNavLink
+                                :href="route('profile.show')"
+                                :active="route().current('profile.show')"
+                            >
+                                Profilo
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('favorites.index')"
+                                :active="route().current('favorites.index')"
+                            >
+                                Film Preferiti
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('posts.create')"
+                                :active="route().current('posts.create')"
+                            >
+                                Crea Post
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('logout')"
+                                method="post"
+                                as="button"
+                            >
+                                Log Out
+                            </ResponsiveNavLink>
+                        </div>
+                    </div>
+
+                    <div v-else class="pt-4 pb-3 border-t border-gray-200">
+                        <div class="mt-3 space-y-1">
+                            <ResponsiveNavLink
+                                :href="route('login')"
+                                :active="route().current('login')"
+                            >
+                                Log in
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('register')"
+                                :active="route().current('register')"
+                            >
+                                Register
+                            </ResponsiveNavLink>
+                        </div>
                     </div>
                 </div>
             </nav>
