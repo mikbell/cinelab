@@ -1,6 +1,6 @@
-# Thor: Love and Thunder (2022)
+# Thor: Love and Thunder 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Chris Hemsworth torna con il suo Thor più comico e autoironico.
   - Natalie Portman brilla nei panni di Jane Foster/Mighty Thor.
   - Gorr il Macellatore di Dei (Christian Bale) è un villain potente ma sottoutilizzato.

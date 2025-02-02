@@ -1,7 +1,6 @@
 # John Wick
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Azione coreografata alla perfezione**: Le scene di combattimento sono un mix elegante di arti marziali e sparatorie, una danza letale che ridefinisce il genere action.
 - **Performance magnetica**: Keanu Reeves incarna John Wick con un'intensità silenziosa e una determinazione implacabile.
 - **Estetica unica**: Un mondo sotterraneo di assassini, con regole e codici propri, arricchisce l'universo narrativo del film.

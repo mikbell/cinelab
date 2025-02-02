@@ -1,7 +1,6 @@
-# Venom 3 (2024)
+# Venom 3 
 
-## Punti Chiave
-
+**Punti Chiave**
 -   **Evoluzione del personaggio**: Eddie Brock e Venom affrontano nuove sfide personali e morali, spingendo il loro rapporto a nuovi livelli.
 -   **Nuove minacce**: Il film introduce un antagonista inedito, con un impatto significativo sia a livello narrativo che d’azione.
 -   **Connessione con l’MCU**: Venom è sempre più integrato nell’universo Marvel, offrendo opportunità per crossover e team-up.

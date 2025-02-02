@@ -1,6 +1,6 @@
-# The Avengers (2012)
+# The Avengers 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Primo grande crossover dell'MCU, che riunisce i principali eroi della Fase 1.
   - Loki si conferma un villain eccezionale, carismatico e pericoloso.
   - Azione spettacolare, culminata nella battaglia finale a New York.

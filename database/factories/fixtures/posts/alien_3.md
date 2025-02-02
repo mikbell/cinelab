@@ -1,6 +1,6 @@
 # Alien 3 (1992)
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Diretto da David Fincher, un capitolo cupo e controverso della saga.
   - Ambientazione in un pianeta-prigione claustrofobico che richiama l’atmosfera del primo film.
   - Uccisione prematura di alcuni personaggi principali di "Aliens", scelta divisiva per i fan.

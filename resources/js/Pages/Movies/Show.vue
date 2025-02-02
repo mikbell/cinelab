@@ -84,7 +84,7 @@
 
                     <!-- Action Buttons -->
                     <div class="flex justify-center gap-4 mt-10">
-                        <PrimaryButton as="link" :href="route('movies.index')">
+                        <PrimaryButton as="link" :href="route('movies.index')" prefetch>
                             Back to List
                         </PrimaryButton>
                         <div v-if="$page.props.auth.user">

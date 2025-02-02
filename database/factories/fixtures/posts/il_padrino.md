@@ -1,7 +1,6 @@
 # Il Padrino
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Regia impeccabile**: Francis Ford Coppola costruisce una narrazione epica, bilanciando tensione, dramma e intimità.
 - **Cast straordinario**: Marlon Brando è leggendario nel ruolo di Vito Corleone, mentre Al Pacino offre una trasformazione memorabile nei panni di Michael.
 - **Colonna sonora iconica**: La musica di Nino Rota è indimenticabile e cattura perfettamente l’essenza della saga.

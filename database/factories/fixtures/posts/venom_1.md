@@ -1,7 +1,6 @@
-# Venom (2018)
+# Venom 
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Performance di Tom Hardy**: Hardy porta sullo schermo un Eddie Brock vulnerabile e tormentato, creando un’interessante dinamica con il simbionte.
 - **Umorismo dark**: Il rapporto tra Eddie e Venom è caratterizzato da battute taglienti e momenti comici che rendono il film unico nel suo genere.
 - **Azione e CGI**: Le sequenze d’azione sono visivamente spettacolari, anche se in alcuni momenti il CGI risulta un po' caotico.

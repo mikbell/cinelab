@@ -1,7 +1,7 @@
 <template>
     <AppLayout title="Movies">
         <Container>
-            <PageHeading> Film Popolari </PageHeading>
+            <PageHeading> {{ query ? query : "Film Popolari" }} </PageHeading>
 
             <!-- Form di ricerca -->
             <MovieSearchForm :query="query" :onSearch="updateMovies" />

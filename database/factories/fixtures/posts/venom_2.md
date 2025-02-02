@@ -1,7 +1,6 @@
-# Venom: La furia di Carnage (2021)
+# Venom: La furia di Carnage 
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Antagonista memorabile**: Woody Harrelson interpreta Cletus Kasady/Carnage con una follia inquietante, anche se il personaggio poteva essere più sviluppato.
 - **Rapporto Eddie-Venom**: Il duo affronta una sorta di "crisi di coppia", regalando momenti esilaranti e un approfondimento delle loro dinamiche.
 - **Azione più intensa**: Le sequenze di combattimento tra Venom e Carnage sono spettacolari, ma a volte troppo brevi.

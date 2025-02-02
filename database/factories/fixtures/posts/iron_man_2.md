@@ -1,6 +1,6 @@
-# Iron Man 2 (2010)
+# Iron Man 2 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Introduzione di Vedova Nera e War Machine.
   - Esplorazione dei limiti di Tony Stark, sia fisici che emotivi.
   - Criticato per una trama più debole e un antagonista poco incisivo (Whiplash).

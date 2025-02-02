@@ -1,6 +1,6 @@
-# Deadpool 2 (2018)
+# Deadpool 2 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Espansione del cast con personaggi memorabili come Cable (Josh Brolin) e Domino (Zazie Beetz).
   - Tono più emotivo, con una trama che esplora il tema della famiglia e della redenzione.
   - Umorismo ancora più assurdo e meta, con numerose citazioni alla cultura pop.

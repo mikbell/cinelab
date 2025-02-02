@@ -1,6 +1,6 @@
-# Thor: The Dark World (2013)
+# Thor: The Dark World 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Introduzione dell'Aether, una delle Gemme dell’Infinito.
   - Loki (Tom Hiddleston) ruba la scena ancora una volta, offrendo profondità e complessità al personaggio.
   - Malekith, il villain, risulta dimenticabile e poco sviluppato.

@@ -1,6 +1,6 @@
 # Alien (1979)
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Diretto da Ridley Scott, un capolavoro di horror e fantascienza che ha definito un genere.
   - Introduzione di Ellen Ripley (Sigourney Weaver), una delle eroine più iconiche del cinema.
   - Atmosfera opprimente e claustrofobica, con tensione crescente fino al finale.

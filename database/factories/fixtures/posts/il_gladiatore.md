@@ -1,7 +1,6 @@
 # Il Gladiatore (2000)
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Regia epica**: Ridley Scott crea un mondo visivamente straordinario, riportando in vita l'antica Roma con maestosità e autenticità.
 - **Performance leggendaria**: Russell Crowe incarna Massimo Decimo Meridio con intensità e carisma, guadagnandosi un meritato Oscar.
 - **Antagonista memorabile**: Joaquin Phoenix è straordinario nel ruolo dell'imperatore Commodo, un personaggio complesso e viscido.

@@ -1,7 +1,6 @@
 # Blade Runner 2049
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Regia straordinaria**: Denis Villeneuve crea un mondo futuristico ipnotico, ricco di dettagli visivi e atmosfere cupe.
 - **Fotografia mozzafiato**: Roger Deakins realizza un capolavoro visivo, vincendo un meritato Oscar per il suo lavoro.
 - **Narrazione profonda**: Una riflessione filosofica sull'identità, la memoria e cosa significhi essere umani.

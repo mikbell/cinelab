@@ -9,8 +9,7 @@
                 768: { slidesPerView: 5, spaceBetween: 24 },
                 1024: { slidesPerView: 6, spaceBetween: 32 },
             }"
-            navigation
-            pagination
+            :navigation="true"
             class="swiper-container"
         >
             <!-- Slides -->

@@ -1,6 +1,6 @@
-# Terrifier 2 (2022)
+# Terrifier 2 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Espansione significativa della mitologia di Art the Clown e del suo universo.
   - Personaggi più sviluppati, con una protagonista forte e memorabile come Sienna Shaw (Lauren LaVera).
   - Scene di violenza ancora più estreme e disturbanti, che spingono i limiti del genere.

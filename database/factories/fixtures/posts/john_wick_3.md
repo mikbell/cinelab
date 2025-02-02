@@ -1,7 +1,6 @@
-# John Wick: Capitolo 3 – Parabellum (2019)
+# John Wick: Capitolo 3 – Parabellum 
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Sopravvivenza a ogni costo**: La fuga di John mette in scena un'azione incessante, con combattimenti sempre più creativi.
 - **Espansione del mito**: L'Alto Tavolo e i suoi emissari assumono un ruolo centrale, aumentando la tensione narrativa.
 - **Alleanze e tradimenti**: John deve decidere chi fidarsi mentre affronta nemici vecchi e nuovi.

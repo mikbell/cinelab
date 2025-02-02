@@ -1,6 +1,6 @@
-# Black Panther (2018)
+# Black Panther 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Chadwick Boseman dà vita a un re T'Challa imponente e carismatico.
   - Wakanda è una rappresentazione culturale ricca e visivamente sbalorditiva.
   - Erik Killmonger (Michael B. Jordan) è uno dei villain più sfaccettati e comprensibili dell'MCU.

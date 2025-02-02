@@ -1,7 +1,6 @@
-# John Wick: Capitolo 4 (2023)
+# John Wick: Capitolo 4 
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Conflitto finale**: John affronta l'Alto Tavolo in una lotta per la libertà, con un'intensità mai vista prima.
 - **Azione monumentale**: Sequenze straordinarie che combinano adrenalina e bellezza cinematografica, culminando in uno scontro epico.
 - **Riflessione sulla vendetta**: Il film esplora il costo della violenza e il desiderio di redenzione.

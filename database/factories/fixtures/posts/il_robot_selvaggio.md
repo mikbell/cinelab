@@ -1,7 +1,6 @@
 # Il robot selvaggio
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Trama toccante**: Una storia che mescola il viaggio di scoperta personale con riflessioni sulla natura, l’umanità e la tecnologia.
 - **Personaggi memorabili**: Il robot Roz è un protagonista straordinariamente empatico, con una crescita che cattura il cuore degli spettatori.
 - **Ambientazione immersiva**: La natura selvaggia, descritta in maniera vivida, diventa un personaggio a sé stante nella narrazione.

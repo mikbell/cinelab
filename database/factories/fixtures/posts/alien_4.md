@@ -1,6 +1,6 @@
 # Alien: La clonazione (1997)
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Ambientazione futuristica con un tono più grottesco e sperimentale.
   - Ripley viene clonata, portando a una versione più oscura e ambigua del personaggio.
   - Introduzione di una nuova ibridazione aliena, il Neonato, che ha diviso i fan.

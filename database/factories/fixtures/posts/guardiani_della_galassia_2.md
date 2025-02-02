@@ -1,6 +1,6 @@
-# Guardiani della Galassia Vol. 2 (2017)
+# Guardiani della Galassia Vol. 2 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Esplorazione del tema della famiglia e delle relazioni.
   - Baby Groot aggiunge un elemento irresistibile di comicità.
   - Ego, interpretato da Kurt Russell, è un villain affascinante e personale per Star-Lord.

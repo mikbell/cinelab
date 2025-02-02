@@ -2,6 +2,7 @@
     <Link
         :href="`/movies/${movie.id}`"
         class="relative flex flex-col transition duration-300 transform bg-white rounded-lg shadow hover:shadow-xl hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        prefetch
     >
         <!-- Poster del film -->
         <img

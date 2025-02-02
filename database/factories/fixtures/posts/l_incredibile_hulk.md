@@ -1,6 +1,6 @@
-# L'Incredibile Hulk (2008)
+# L'Incredibile Hulk 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Edward Norton offre un Bruce Banner tormentato e umano.
   - Sequenze d'azione solide, specialmente lo scontro finale contro Abominio.
   - Tonalità più oscura rispetto agli altri film della Fase 1, con un focus sul dramma psicologico.

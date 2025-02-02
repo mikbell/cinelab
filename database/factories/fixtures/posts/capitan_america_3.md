@@ -1,6 +1,6 @@
-# Captain America: Civil War (2016)
+# Captain America: Civil War 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Conflitto emotivo tra Steve Rogers e Tony Stark, che divide gli Avengers.
   - Introduzione di nuovi personaggi come Spider-Man (Tom Holland) e Black Panther (Chadwick Boseman).
   - La scena della battaglia all'aeroporto è uno degli scontri più iconici dell'MCU.

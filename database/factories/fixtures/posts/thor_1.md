@@ -1,6 +1,6 @@
-# Thor (2011)
+# Thor 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Chris Hemsworth dà vita a Thor con carisma e forza, mentre Tom Hiddleston si afferma come un Loki memorabile.
   - Bella rappresentazione di Asgard, con effetti visivi impressionanti.
   - Il mix di mitologia e umorismo non sempre funziona alla perfezione.

@@ -1,6 +1,6 @@
-# Deadpool (2016)
+# Deadpool 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Ryan Reynolds offre una performance perfetta come Wade Wilson/Deadpool, combinando umorismo, sarcasmo e azione.
   - Rompe la quarta parete con un’irriverenza unica, creando un’esperienza meta-cinematografica.
   - Trama semplice ma ben eseguita, con un mix di vendetta e amore.

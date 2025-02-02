@@ -269,7 +269,7 @@ const navLinks = [
             </nav>
 
             <!-- Contenuto principale -->
-            <main class="min-h-screen py-6">
+            <main class="min-h-screen">
                 <slot />
             </main>
 
@@ -290,7 +290,7 @@ const navLinks = [
                         API
                     </p>
                     <p class="text-sm text-gray-600">
-                        &copy; {{ new Date().getFullYear() }} YourSite
+                        &copy; {{ new Date().getFullYear() }} CineLab
                     </p>
                 </div>
             </footer>

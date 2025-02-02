@@ -30,10 +30,10 @@ class Post extends Model
         'html',
     ];
 
-    const TITLE_MIN_LENGTH = 10;
-    const TITLE_MAX_LENGTH = 120;
-    const CONTENT_MIN_LENGTH = 100;
-    const CONTENT_MAX_LENGTH = 10_000;
+    public const TITLE_MIN_LENGTH = 10;
+    public const TITLE_MAX_LENGTH = 120;
+    public const CONTENT_MIN_LENGTH = 100;
+    public const CONTENT_MAX_LENGTH = 10_000;
 
 
     protected static function boot()

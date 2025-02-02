@@ -1,6 +1,6 @@
-# Prometheus  (2012)
+# Prometheus  
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Diretto da Ridley Scott, esplora le origini dello Xenomorfo e i misteri dei Creatori.
   - Focus su tematiche filosofiche come l’origine della vita e il rapporto tra creatore e creato.
   - Visivamente spettacolare, con effetti visivi di alto livello.

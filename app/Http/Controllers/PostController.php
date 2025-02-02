@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TopicResource;
 use App\Models\Post;
+use Inertia\Inertia;
 use App\Models\Topic;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
+use App\Http\Resources\TopicResource;
 use App\Http\Resources\CommentResource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -21,28 +22,22 @@ class PostController extends Controller
      */
     public function index(Request $request, Topic $topic = null)
     {
-        if ($request->query('query')) {
-
-
-            $posts = Post::search($request->query('query'))
-                ->query(fn(Builder $query) => $query->with(['user', 'topic']))
-                ->when($topic, fn(\Laravel\Scout\Builder $query) => $query->where('topic_id', $topic->id));
-        } else {
-            $posts = Post::query()
+        $query = $request->query('query');
+        $posts = $query
+            ? Post::search($query)
+                ->query(fn(Builder $q) => $q->with(['user', 'topic'])->withCount(['likes', 'comments']))
+                ->when($topic, fn(\Laravel\Scout\Builder $q) => $q->where('topic_id', $topic->id))
+            : Post::query()
                 ->with(['user', 'topic'])
-                ->when($topic, fn(Builder $query) => $query->whereBelongsTo($topic))
-                ->latest()
+                ->withCount(['likes', 'comments']) // Aggiunge il conteggio dei commenti
+                ->when($topic, fn(Builder $q) => $q->whereBelongsTo($topic))
                 ->latest('id');
-        }
-
 
         return inertia('Posts/Index', [
-            'posts' => PostResource::collection($posts
-                ->paginate()
-                ->withQueryString()),
-            'topics' => TopicResource::collection(Topic::all()),
+            'posts' => fn() => PostResource::collection($posts->paginate()->withQueryString()),
+            'topics' => Inertia::defer(fn() => TopicResource::collection(Topic::all())),
             'selectedTopic' => fn() => $topic ? TopicResource::make($topic) : null,
-            'query' => $request->query('query'),
+            'query' => fn() => $query,
         ]);
     }
 
@@ -116,7 +111,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
-        
+
         return inertia(
             'Posts/Edit',
             [

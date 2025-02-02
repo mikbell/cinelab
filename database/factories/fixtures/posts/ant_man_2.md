@@ -1,6 +1,6 @@
-# Ant-Man and the Wasp (2018)
+# Ant-Man and the Wasp 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Tono leggero e divertente, perfetto dopo la gravità di "Infinity War".
   - Introduzione della dimensione quantica, fondamentale per il futuro dell'MCU.
   - La relazione tra Scott Lang e Hope Van Dyne è ben sviluppata.

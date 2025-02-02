@@ -1,6 +1,6 @@
-# Guardiani della Galassia Vol. 3 (2023)
+# Guardiani della Galassia Vol. 3 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Conclusione emozionante e soddisfacente per i Guardiani.
   - Approfondimento della storia di Rocket Raccoon, il cuore emotivo del film.
   - James Gunn offre un mix perfetto di umorismo, azione e lacrime.

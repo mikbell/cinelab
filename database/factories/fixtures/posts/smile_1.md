@@ -1,7 +1,6 @@
-# Smile (2022)
+# Smile 
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Atmosfera inquietante**: Il film crea una tensione costante, mantenendo lo spettatore sul filo del rasoio.
 - **Performance principale**: Sosie Bacon offre una recitazione intensa nei panni della dottoressa Rose Cotter, catturando perfettamente la discesa nella paranoia.
 - **Immagini disturbanti**: La regia utilizza inquadrature innovative e momenti di puro terrore visivo.

@@ -1,4 +1,4 @@
-## Joker: Folie à Deux (2024)
+## Joker: Folie à Deux 
 
 ---
 

@@ -1,6 +1,6 @@
-# Doctor Strange nel Multiverso della Follia (2022)
+# Doctor Strange nel Multiverso della Follia 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Regia di Sam Raimi che aggiunge un tocco horror all’MCU.
   - Esplorazione del multiverso con sequenze visivamente impressionanti.
   - Elizabeth Olsen è straordinaria come Scarlet Witch, un’anti-eroina tormentata.

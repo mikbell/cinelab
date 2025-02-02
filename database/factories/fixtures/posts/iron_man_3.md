@@ -1,6 +1,6 @@
-# Iron Man 3 (2013)
+# Iron Man 3 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Approfondimento psicologico di Tony Stark, che affronta il disturbo post-traumatico dopo gli eventi di "The Avengers".
   - Il controverso twist del Mandarino divide i fan: geniale per alcuni, deludente per altri.
   - Scene d'azione spettacolari, con Tony che sperimenta nuovi modi di usare l'armatura.

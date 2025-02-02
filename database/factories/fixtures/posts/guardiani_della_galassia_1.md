@@ -1,6 +1,6 @@
-# Guardiani della Galassia (2014)
+# Guardiani della Galassia 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Introduzione di nuovi personaggi come Star-Lord, Gamora, Rocket, Groot e Drax.
   - Tono divertente e spensierato, con una colonna sonora retrò iconica.
   - Espansione dell'universo cosmico dell'MCU.

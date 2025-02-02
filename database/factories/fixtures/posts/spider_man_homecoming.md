@@ -1,6 +1,6 @@
-# Spider-Man: Homecoming (2017)
+# Spider-Man: Homecoming 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Tom Holland offre un'interpretazione fresca e convincente di Peter Parker/Spider-Man.
   - Michael Keaton brilla nei panni dell’Avvoltoio, un villain motivato e credibile.
   - Tonalità giovanile e umoristica, con un focus sulla vita da adolescente di Peter.

@@ -1,7 +1,6 @@
-# John Wick: Capitolo 2 (2017)
+# John Wick: Capitolo 2 
 
-## Punti Chiave
-
+**Punti Chiave**
 -   **Espansione del mondo**: Il sequel arricchisce l’universo narrativo, esplorando le regole e i personaggi del mondo sotterraneo degli assassini.
 -   **Azione elevata**: Le sequenze sono più spettacolari, mantenendo una coreografia impeccabile.
 -   **Conflitto morale**: John è costretto a rispettare un debito, mostrando il peso delle sue scelte passate.

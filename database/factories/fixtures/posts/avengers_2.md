@@ -1,6 +1,6 @@
-# Avengers: Age of Ultron (2015)
+# Avengers: Age of Ultron 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Introduzione di nuovi personaggi come Scarlet Witch, Quicksilver e Visione.
   - Ultron, interpretato da James Spader, è un villain filosofico ma non sempre all’altezza delle aspettative.
   - Scene d'azione epiche, inclusa la battaglia finale a Sokovia.

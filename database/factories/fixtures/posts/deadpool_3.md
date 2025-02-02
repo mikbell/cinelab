@@ -1,6 +1,6 @@
-# Deadpool 3 (2024)
+# Deadpool 3 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Primo film con Deadpool ufficialmente integrato nell’MCU.
   - Annunciato il ritorno di Hugh Jackman nei panni di Wolverine, promettendo interazioni epiche e irriverenti.
   - Maggiore esplorazione del multiverso, aprendo nuove possibilità per il personaggio.

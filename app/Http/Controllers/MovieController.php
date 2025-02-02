@@ -14,8 +14,6 @@ class MovieController extends Controller
         $this->tmdbService = $tmdbService;
     }
 
-
-
     public function dashboard(Request $request)
     {
         $page = (int) $request->query('page', 1);

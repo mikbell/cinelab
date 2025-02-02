@@ -1,7 +1,6 @@
 # Schindler's List (1993)
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Regia magistrale**: Steven Spielberg dirige con sensibilità e maestria un racconto straziante sull’Olocausto.
 - **Performance straordinarie**: Liam Neeson offre un'interpretazione intensa nei panni di Oskar Schindler, affiancato da un eccezionale Ralph Fiennes nel ruolo del crudele Amon Göth.
 - **Fotografia in bianco e nero**: Janusz Kamiński utilizza il bianco e nero per enfatizzare la gravità e l’intemporalità della storia, con l'iconico dettaglio del cappotto rosso come simbolo potente.

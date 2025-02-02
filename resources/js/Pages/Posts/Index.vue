@@ -57,7 +57,7 @@
                         :key="post.id"
                         class="flex flex-col items-baseline justify-between p-6 transition-shadow duration-200 bg-white rounded-lg shadow-md md:flex-row group hover:shadow-lg"
                     >
-                        <Link :href="post.routes.show">
+                        <Link :href="post.routes.show" prefetch>
                             <h2
                                 class="text-xl font-bold text-gray-800 transition duration-150 group-hover:text-blue-600"
                             >
@@ -69,6 +69,11 @@
                                     post.user.name
                                 }}</span>
                             </p>
+
+                            <div class="flex items-center mt-4 space-x-2">
+                                <span>{{ post.likes_count }} Likes</span>
+                                <span>{{ post.comments_count }} Commenti</span>
+                            </div>
                         </Link>
 
                         <Pill :href="route('posts.index', post.topic.slug)"

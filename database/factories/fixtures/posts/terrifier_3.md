@@ -1,6 +1,6 @@
-# Terrifier 3 (2024) *(ipotetico, basato su anticipazioni)*
+# Terrifier 3  *(ipotetico, basato su anticipazioni)*
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Promette di esplorare ulteriormente le origini e le motivazioni di Art the Clown.
   - La violenza e il gore rimangono al centro, ma con un focus maggiore sulla costruzione della trama.
   - Introduzione di nuovi personaggi che potrebbero cambiare le dinamiche.

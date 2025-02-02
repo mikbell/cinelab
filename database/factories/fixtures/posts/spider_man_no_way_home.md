@@ -1,6 +1,6 @@
-# Spider-Man: No Way Home (2021)
+# Spider-Man: No Way Home 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Celebrazione nostalgica con il ritorno di Tobey Maguire, Andrew Garfield e i loro villain.
   - Tom Holland offre la sua migliore performance nei panni di Peter Parker.
   - Combina umorismo, azione ed emozioni in modo magistrale.

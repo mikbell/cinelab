@@ -1,6 +1,6 @@
-# Black Panther: Wakanda Forever (2022)
+# Black Panther: Wakanda Forever 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Un omaggio emozionante a Chadwick Boseman, con una narrazione piena di rispetto.
   - Introduzione di Namor, un antagonista affascinante e complesso.
   - Esplora il tema del lutto e della resilienza con profondità.

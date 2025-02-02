@@ -1,6 +1,6 @@
-# Thor: Ragnarok (2017)
+# Thor: Ragnarok 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Cambio radicale di tono, con una forte dose di umorismo e colori vivaci.
   - Cate Blanchett è affascinante e minacciosa nel ruolo di Hela.
   - Hulk e Thor formano un duo memorabile, portando avanti il tema dell’amicizia.

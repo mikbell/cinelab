@@ -1,6 +1,6 @@
-# Ant-Man (2015)
+# Ant-Man 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Tono più leggero e umoristico rispetto agli altri film della fase.
   - Paul Rudd porta freschezza al personaggio di Scott Lang, un eroe riluttante ma affascinante.
   - Sequenze d'azione creative grazie all’uso del ridimensionamento.

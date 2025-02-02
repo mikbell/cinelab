@@ -1,6 +1,6 @@
-# Avengers: Infinity War (2018)
+# Avengers: Infinity War 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Thanos è il vero protagonista, un villain complesso e motivato.
   - Azione e narrazione ben equilibrate, con tutti i personaggi gestiti in modo efficace.
   - Scene emozionanti e devastanti, culminate nello "snap".

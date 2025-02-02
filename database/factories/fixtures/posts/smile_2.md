@@ -1,7 +1,6 @@
-# Smile 2 (2024)
+# Smile 2 
 
-## Punti Chiave
-
+**Punti Chiave**
 - **Espansione della mitologia**: Il sequel approfondisce le origini dell'entità, aggiungendo nuovi elementi al mistero.
 - **Nuovo protagonista**: La storia segue un personaggio legato agli eventi del primo film, esplorando l’impatto a lungo termine dell’entità.
 - **Azione più intensa**: Le sequenze horror sono ancora più elaborate, con un uso creativo di jump scare e terrore psicologico.

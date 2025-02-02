@@ -1,6 +1,6 @@
-# Doctor Strange (202016)
+# Doctor Strange
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Introduzione di Benedict Cumberbatch nei panni di Stephen Strange, un eroe complesso e affascinante.
   - Effetti visivi straordinari che ridefiniscono il concetto di realtà.
   - Un viaggio di trasformazione personale e spirituale.

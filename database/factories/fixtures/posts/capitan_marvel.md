@@ -1,6 +1,6 @@
-# Captain Marvel (2019)
+# Captain Marvel 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Brie Larson introduce Carol Danvers, un'eroina potente e determinata.
   - Approfondisce la storia di Nick Fury e le origini dello S.H.I.E.L.D.
   - Ambientazione anni '90 con una colonna sonora nostalgica.

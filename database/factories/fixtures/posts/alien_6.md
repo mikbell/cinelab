@@ -1,6 +1,6 @@
-# Alien: Covenant (2017)
+# Alien: Covenant 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Seguito di "Prometheus", mescola il tono filosofico del predecessore con l’horror classico della saga.
   - Esplora ulteriormente il personaggio di David, che si rivela una figura inquietante e centrale.
   - Scene di tensione e orrore più vicine all’atmosfera del primo "Alien".

@@ -1,6 +1,6 @@
-# Captain America: The Winter Soldier (2014)
+# Captain America: The Winter Soldier 
 
-- **Punti Chiave**: 
+ **Punti Chiave**: 
   - Tonalità più seria e matura, con elementi da thriller politico.
   - Introduzione di Winter Soldier (Sebastian Stan), un avversario emotivamente legato a Steve Rogers.
   - Scene d'azione incredibilmente ben coreografate, tra cui lo scontro nell'ascensore.

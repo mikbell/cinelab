@@ -16,7 +16,12 @@
                     </Pill>
                 </div>
 
-                <PrimaryButton v-if="post.can.update" as="link" :href="post.routes.edit" class="mb-4">
+                <PrimaryButton
+                    v-if="post.can.update"
+                    as="link"
+                    :href="post.routes.edit"
+                    class="mb-4"
+                >
                     Modifica post
                 </PrimaryButton>
             </div>
@@ -96,9 +101,8 @@
                 </form>
 
                 <p v-else class="mt-6 text-sm italic text-gray-500">
-                    Devi
-                    <Link :href="route('login')" class="text-black underline"
-                        >accedere</Link
+                    <Link :href="route('login')" class="text-black hover:underline"
+                        >Accedi</Link
                     >
                     per scrivere un commento.
                 </p>
