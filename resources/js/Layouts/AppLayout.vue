@@ -55,7 +55,7 @@ const navLinks = [
         <div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
             <!-- Barra di navigazione -->
             <nav
-                class="shadow-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                class="sticky top-0 z-50 shadow-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
             >
                 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">

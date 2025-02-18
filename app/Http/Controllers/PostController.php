@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Inertia\Inertia;
 use App\Models\Topic;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
@@ -34,7 +35,8 @@ class PostController extends Controller
                 ->latest('id');
 
         return inertia('Posts/Index', [
-            'posts' => fn() => PostResource::collection($posts->paginate()->withQueryString()),
+            'posts' => Inertia::merge(fn() => PostResource::collection($posts->paginate()->withQueryString())->items()),
+            'pagination' => Arr::except($posts->paginate()->withQueryString()->toArray(), 'data'),
             'topics' => Inertia::defer(fn() => TopicResource::collection(Topic::all())),
             'selectedTopic' => fn() => $topic ? TopicResource::make($topic) : null,
             'query' => fn() => $query,

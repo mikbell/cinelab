@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -16,16 +16,19 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        Comment::make($request->validate([
+        $validatedData = $request->validate([
             'content' => 'required|max:1000|min:3|string',
-        ]))->user()
-            ->associate($request->user())
-            ->post()
-            ->associate($post)
-            ->save();
+        ]);
 
-            return redirect($post->showRoute())->banner('Commento creato con successo');
-        }
+        // Creazione del commento
+        $comment = new Comment($validatedData);
+        $comment->user()->associate($request->user());
+        $comment->post()->associate($post);
+        $comment->save();
+
+        return redirect($post->showRoute())->banner('Commento creato con successo');
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -33,7 +36,7 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {
         $this->authorize('update', $comment);
-        
+
         $data = $request->validate([
             'content' => 'required|max:1000|min:3|string',
         ]);

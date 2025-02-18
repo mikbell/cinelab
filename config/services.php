@@ -39,4 +39,8 @@ return [
         'api_key' => env('TMDB_API_KEY'),
     ],
 
+    'openai' => [
+        'secret' => env('OPENAI_API_KEY'),
+    ]
+
 ];
